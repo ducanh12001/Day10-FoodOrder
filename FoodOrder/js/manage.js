@@ -3,11 +3,14 @@ function openForm() {
 }
 
 function closeForm() {
-    document.getElementById("addCont").style.display = 'none'
+    document.getElementById("addCont").style.display = 'none';
+    clearInput();
 }
 
 class Dish {
-    constructor(name, descriptionS, descriptionF, address) {
+    constructor(imageB, imageS, name, descriptionS, descriptionF, address) {
+        this.imageB = imageB;
+        this.imageS = imageS;
         this.name = name;
         this.descriptionS = descriptionS;
         this.descriptionF = descriptionF;
@@ -15,6 +18,7 @@ class Dish {
     }
 }
 
+//pagination
 document.addEventListener('DOMContentLoaded', init, false);
 let DishList, table;
 var currentPage = 1;
@@ -88,6 +92,7 @@ function numPages()
     return Math.ceil(DishList.length / itemPerPage);
 }
 
+//
 function searchValue() {
     var filter = document.getElementById("searchBar").value.toLowerCase();
     var table = document.getElementById("table");
@@ -105,20 +110,53 @@ function searchValue() {
     }
 }
 
-
-let addForm = document.getElementById("addForm");
-let saveBtn = document.getElementById("saveBtn")
-saveBtn.addEventListener("submit", (e) => {
+//add to localStorage
+document.querySelector("#saveBtn").addEventListener("click", (e) => {
     e.preventDefault()
-    let imageB = document.querySelector("#imageB");
-    let imageS = document.querySelector("#imageS");
-    let dishName = document.querySelector("#name").value;
-    let descriptionS = document.querySelector("#descriptionS").value;
-    let descriptionF = document.querySelector("#decriptionF").value;
-    let address = document.querySelector("#address").value;
-    if (dishName === '') {
-        alert("Please select")
+    var imageB = document.querySelector("#imageB").value;
+    var imageS = document.querySelector("#imageS").value;
+    var dishName = document.querySelector("#name").value;
+    const descriptionS = document.querySelector("#descriptionS").value;
+    const descriptionF = document.querySelector("#descriptionF").value;
+    var address = document.querySelector("#address").value;
+
+    if (imageB=== '' || imageS=== '' || dishName=== '' || descriptionS=== '' || descriptionF=== '' || address=== '') {
+        document.querySelector('.error-message').innerHTML = 'Điền đủ các mục';
     } else {
-        alert(dishName)
+        const newDish = new Dish(imageB, imageS, dishName, descriptionS, descriptionF, address)
+        addDishStore(newDish);
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        closeForm();
+        clearInput();
     }
 }) 
+
+function clearInput() {
+    document.querySelector('.error-message').innerHTML = ''
+    document.querySelector("#imageB").value ='';
+    document.querySelector("#imageS").value='';
+    document.querySelector("#name").value='';
+    document.querySelector("#descriptionS").value='';
+    document.querySelector("#descriptionF").value='';
+    document.querySelector("#address").value='';
+}
+
+function getDishStore() {
+    let myLibrary;
+    if (localStorage.getItem('dishes') === null) {
+        myLibrary = []
+    } else {
+        myLibrary = JSON.parse(localStorage.getItem('dishes'));
+    }
+    return myLibrary;
+}
+
+function addDishStore(dish) {
+    const dishes = getDishStore();
+    dishes.push(dish);
+    localStorage.setItem("dishes", JSON.stringify(dishes))
+}
+
+   

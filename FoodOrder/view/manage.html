@@ -5,8 +5,8 @@
     <title>Manage</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' href='../css/manage.css'>
+    <link rel='stylesheet' href='../css/toast.css'>
     <script src="https://kit.fontawesome.com/47be3b846d.js" crossorigin="anonymous"></script>
-    <script src='../js/manage.js'></script>
 </head>
 <body>
     <header>
@@ -66,10 +66,11 @@
             <a href="javascript:nextPage()" id="nextBtn">&raquo;</a>
         </div>
     </div>
-
+    <div id="snackbar">Success!</div>
     <div class="add-container" id="addCont">
         <div class="title">
             Thêm món ăn
+            <span class="error-message"></span>
         </div>
         <form id="addForm" action="">
             <div class="input-div">
@@ -90,7 +91,7 @@
             </div>
             <div class="input-div">
                 <label for="">Mô tả đầy đủ</label>
-                <textarea type="text" id="descriptionF" class="input textarea" required></textarea>
+                <textarea id="descriptionF" class="input textarea" required></textarea>
             </div>
             <div class="input-div">
                 <label for="address">Thông tin nhà cung cấp</label>
@@ -102,5 +103,6 @@
             </div>
         </form>
     </div>
+    <script src='../js/manage.js'></script>
 </body>
 </html>
