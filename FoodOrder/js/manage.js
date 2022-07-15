@@ -36,7 +36,7 @@ function renderTable() {
         if (index >= start && index < end) return true;
     }).forEach((dish, index) => {
         result += `<tr>
-        <td>${index + 1}</td>
+        <td>${(currentPage-1)*itemPerPage + index + 1}</td>
         <td></td>
         <td><a href="">${dish.name}</a></td>
         <td>${dish.descriptionS}</td>
@@ -105,50 +105,20 @@ function searchValue() {
     }
 }
 
-/*
-function addListToTable(dish, index) {
-    const list = document.getElementById("dish-list");
-    const row = document.createElement("tr");
 
-    row.innerHTML = `
-        <td>${index}</td>
-        <td></td>
-        <td><a href="">${dish.name}</a></td>
-        <td>${dish.descriptionS}</td>
-        <td>${dish.price}</td>
-        <td>${dish.rate}</td>
-    `
-    list.appendChild(row)
-}
-
-fetch(`https://62cfe5951cc14f8c087fabdf.mockapi.io/api/products`)
-    .then((response) => {
-        return response.json();
-    })
-    .then((data) => {
-        const dishes = JSON.stringify(data);
-        if (dishes === null) {
-            DishList = []
-        } else {
-            DishList = JSON.parse(dishes);
-            localStorage.setItem('dishNum', DishList.length); 
-        }
-    })
-    .catch((e) => {
-        alert("Error " + e)
-    });
-
-const addForm = document.getElementById("addCont");
-function addItem() {
-    const imageB = document.querySelector("#imageB");
-    const imageS = document.querySelector("#imageS");
-    const dishName = document.querySelector("#name").value;
-    const descriptionS = document.querySelector("#descriptionS").value;
-    const descriptionF = document.querySelector("#decriptionF").value;
-    const address = document.querySelector("#address").value;
+let addForm = document.getElementById("addForm");
+let saveBtn = document.getElementById("saveBtn")
+saveBtn.addEventListener("submit", (e) => {
+    e.preventDefault()
+    let imageB = document.querySelector("#imageB");
+    let imageS = document.querySelector("#imageS");
+    let dishName = document.querySelector("#name").value;
+    let descriptionS = document.querySelector("#descriptionS").value;
+    let descriptionF = document.querySelector("#decriptionF").value;
+    let address = document.querySelector("#address").value;
     if (dishName === '') {
-        console.log("Please select")
+        alert("Please select")
     } else {
-        console.log(dishName)
+        alert(dishName)
     }
-}*/
+}) 
