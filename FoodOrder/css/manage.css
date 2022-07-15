@@ -1,0 +1,246 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: fixed;
+    background-color: #22242a;
+    padding: 20px;
+    width: 100%;
+    height: 30px;
+}
+
+.left_area h3{
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.sidebar {
+    background-color: #2f323a;
+    position: fixed;
+    margin-top: 70px;
+    left: 0;
+    width: 250px;
+    height: 100%;
+}
+
+.sidebar a {
+    color: #fff;
+    display: block;
+    width: 100%;
+    line-height: 60px;
+    text-decoration: none;
+    padding-left: 40px;
+    box-sizing: border-box;
+    transition: 0.5s;
+}
+
+.sidebar a:hover {
+    background: #19b3d3;
+}
+
+.sidebar i {
+    padding-right: 10px;
+}
+
+.content {
+    margin-left: 250px;
+    position: fixed;
+    margin-top: 70px;
+    padding: 30px;
+    top: 0;
+    bottom:0;
+    position:fixed;
+    overflow-y:scroll;
+    overflow-x:hidden;
+    width: calc(100% - 250px - 60px);
+}
+
+/*list*/
+.content .title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title .btn-group a {
+    color: black;
+    font-size: 1.125rem;
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 5px;
+}
+
+.title .btn-group input {
+    font-size: 16px;
+    padding: 6px 7px;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.title .btn-group input[type="button"] {
+    background-color: rgb(36, 134, 219);
+    cursor: pointer;
+    color: white;
+    border: 0;
+    margin-left: 10px;
+}
+
+.title .btn-group input[type="button"]:hover {
+    background-color: rgb(32, 101, 203);
+}
+
+.table-container table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 18px;
+}
+
+.table-container th, .table-container td {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+}
+
+.table-container table tbody a {
+    text-decoration: none;
+    color: black;
+}
+
+.table-container table tbody a:hover {
+    color: red;
+}
+
+/*add*/
+.add-container {
+    max-width: 500px;
+    width: 100%;
+    background-color: lightblue;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.125);
+    display: none;
+}
+
+.add-container .title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.add-container #addForm {
+    width: 100%;
+}
+
+.add-container #addForm .input-div {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.add-container #addForm .input-div label {
+    width: 200px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.add-container #addForm .input-div .imageInput {
+    width: 100%;
+}
+
+.add-container #addForm .input-div .input {
+    width: 100%;
+    outline: none;
+    border: 1px solid lightgray;
+    font-size: 15px;
+    padding: 7px 8px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.add-container #addForm .input-div textarea {
+    resize: none;
+    height: 50px;
+}
+
+.add-container #addForm .input-div .input:focus {
+    border: 1px solid black;
+}
+
+.add-container #addForm .btn-div {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 0;
+}
+
+.add-container #addForm .input-div .btn {
+    padding: 8px 10px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: none;
+    color: white;
+}
+
+.add-container #addForm .input-div .saveBtn {
+    background-color: green;
+}
+
+.add-container #addForm .input-div .cancelBtn {
+    background-color: gray;
+}
+
+.add-container #addForm .input-div .saveBtn:hover {
+    background-color: rgb(20, 99, 30);
+}
+
+.add-container #addForm .input-div .cancelBtn:hover {
+    background-color: rgb(98, 99, 98);
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 18px;
+    margin-top: 10px;
+}
+  
+.pagination a {
+    color: black;
+    float: left;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+    color: red;
+}
+
+@media (max-width: 420px) {
+    .add-container #addForm .input-div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .add-container #addForm .input-div label {
+        margin-bottom: 5px;
+    }
+
+    .add-container #addForm .btn-div {
+        flex-direction: row;
+    }
+}

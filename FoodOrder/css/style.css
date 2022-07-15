@@ -1,0 +1,269 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #d7dbe7;
+    padding: 20px;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.left_area a {
+    text-decoration: none;
+    color: black;
+    font-size: 22px;
+    font-weight: 900;
+}   
+
+.right_area {
+    display: flex;
+    font-size: 18px;
+}
+
+.right_area .item {
+    margin-left: 20px;
+}
+
+.right_area .item a {
+    text-decoration: none;
+    color: black;
+}
+
+.right_area .item a:hover {
+    color: red;
+}
+
+.right_area .item i {
+    cursor: pointer;
+}
+
+.content {
+    padding: 30px;
+}
+
+.content .title {
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+/*home*/
+.card-container {
+    display: grid;
+    gap: 4%;
+    grid-template-columns: repeat(3, 30.66%);
+    padding: 0 150px;
+}
+
+.card-container .card a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.card-container .card img {
+    max-width: 100%;
+    max-height: 100%;
+    margin-bottom: 10px;
+}
+
+.card-container .card span {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/*dishes*/
+.dish-container {
+    display: grid;
+    gap: 2%;
+    grid-template-columns: repeat(5, 18.4%);
+    grid-template-rows: repeat(4, auto);
+}
+
+.dish-container .card {
+    border-radius: 1rem;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 1px 4px 1px #747474;
+}
+
+.dish-container .card a {
+    text-decoration: none;
+}
+
+.dish-container .card img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    margin-bottom: 5px;
+}
+
+.dish-container .card .dish-name {
+    font-size: 18px;
+    color: #ff0099;
+    margin-bottom: .4rem;
+}
+
+.dish-container .card .data {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dish-container .card .price {
+    font-size: 16px;
+    font-weight: bold;  
+}
+
+.dish-container .card .description {
+    font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+   -webkit-line-clamp: 2; 
+   -webkit-box-orient: vertical;
+}
+
+.dish-container .card .btn-group{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.dish-container .card .button,
+.container .dish-info .button {
+    padding: 5px 6px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid gray;
+    font-size: 15px;
+}
+
+.dish-container .card .cartBtn,
+.container .dish-info .cartBtn {
+    background-color: black;
+    color: white;
+}
+
+.dish-container .card .cartBtn:hover,
+.container .dish-info .cartBtn:hover {
+    background-color: rgb(49, 48, 48);
+    cursor: pointer;
+}
+
+.dish-container .card .orderBtn,
+.container .dish-info .orderBtn {
+    background-color: red;
+    color: white;
+}
+
+.dish-container .card .orderBtn:hover,
+.container .dish-info .orderBtn:hover {
+    background-color: rgb(200, 0, 0);
+}
+
+/*productDetails */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 30px;
+}
+
+.container .dish-image {
+    width: 40%;
+}
+
+.container img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.container .dish-info {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 241, 214);
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.container .dish-info .address {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.container .dish-info .rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.container .dish-info .number-rating {
+    background-color: orange;
+    border-radius: 5px;
+    padding: 1px 7px;
+    margin-left: 10px;
+    text-align: center;
+}
+
+.container .dish-info .price {
+    margin-bottom: 20px;
+}
+
+.container .dish-info .btn-group {
+    display: flex;
+    border-top: 1px solid gray;
+    padding: 10px;
+}
+
+.container .dish-info .btn-group a {
+    text-decoration: none;
+}
+
+.container .dish-info .cartBtn {
+    margin-right: 20px;
+}
+
+.container2 {
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.comment-container {
+    display: grid;
+    gap: 10%;
+    grid-template-columns: repeat(2, 25%);
+}
+
+.comment-card {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 30px;
+}
+
+.comment-card .user-info span {
+    font-weight: bold;
+}
+
+.comment-card .user-image {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+.comment-card .comment {
+    font-size: 15px;
+}

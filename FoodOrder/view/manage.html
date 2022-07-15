@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Manage</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='../css/manage.css'>
+    <script src="https://kit.fontawesome.com/47be3b846d.js" crossorigin="anonymous"></script>
+    <script src='../js/manage.js'></script>
+</head>
+<body>
+    <header>
+        <div class="left_area">
+            <h3>Manage</h3>
+        </div>
+        <div class="right_area">
+            <a href=""></a>
+        </div>
+    </header>
+    <div class="sidebar">
+        <a href="manage.html">
+            <i class="fa-solid fa-list"></i>
+            <span>List</span>
+        </a>
+        <a href="addProduct.html">
+            <i class="fa-solid fa-square-plus"></i>
+            <span>Add</span>
+        </a>
+        <a href="detail.html">
+            <i class="fa-solid fa-note-sticky"></i>
+            <span>Details</span>
+        </a>
+        <a href="home.html">
+            <i class="fa-solid fa-note-sticky"></i>
+            <span>Home</span>
+        </a>
+    </div>
+
+    <div class="content">
+        <div class="title">
+            Danh sách món ăn
+            <div class="btn-group">
+                <input type="text" id="searchBar" placeholder="Tìm kiếm" onkeyup="searchValue()">
+                <input type="button" id="addBtn" value="Thêm" onclick="openForm()">
+            </div>
+        </div>
+        <div class="table-container">
+            <form id="list-form" action="" method="">
+                <table id="table">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Ảnh nhỏ</th>
+                            <th>Tên món</th>
+                            <th>Mô tả ngắn</th>
+                            <th>Đơn giá</th>
+                            <th>Điểm đánh giá</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dish-list">
+                    </tbody>
+                </table>
+            </form>
+        </div>
+        <div class="pagination">
+            <a href="javascript:prevPage()" id="prevBtn">&laquo;</a>
+            <span id="page"></span>
+            <a href="javascript:nextPage()" id="nextBtn">&raquo;</a>
+          </div>
+    </div>
+
+    <div class="add-container" id="addCont">
+        <div class="title">
+            Thêm món ăn
+        </div>
+        <form id="addForm" action="" onsubmit="return addItem();">
+            <div class="input-div">
+                <label for="imageB">Ảnh lớn</label>
+                <input type="file" id="imageB" name="imageB" class="imageInput">
+            </div>
+            <div class="input-div">
+                <label for="imageS">Ảnh nhỏ</label>
+                <input type="file" id="imageS" name="imageS" class="imageInput">
+            </div>
+            <div class="input-div">
+                <label for="name">Tên món</label>
+                <input type="text" id="name" name="name" class="input" required>
+            </div>
+            <div class="input-div">
+                <label for="">Mô tả ngắn</label>
+                <textarea id="descriptionS" class="input textarea" required></textarea>
+            </div>
+            <div class="input-div">
+                <label for="">Mô tả đầy đủ</label>
+                <textarea type="text" id="descriptionF" class="input textarea" required></textarea>
+            </div>
+            <div class="input-div">
+                <label for="address">Thông tin nhà cung cấp</label>
+                <input type="text" id="address" name="address" class="input" required>
+            </div>
+            <div class="input-div btn-div">
+                <input type="button" id="cancelBtn" value="Cancel" class="btn cancelBtn" onclick="closeForm()">
+                <input type="submit" form="addForm" id="saveBtn" value="Save" class="btn saveBtn">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

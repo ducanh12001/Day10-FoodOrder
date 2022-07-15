@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Add dishes</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='../css/manage.css'>
+    <script src='../js/'></script>
+    <script src="https://kit.fontawesome.com/47be3b846d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="left_area">
+            <h3>Manage</h3>
+        </div>
+        <div class="right_area">
+            <a href=""></a>
+        </div>
+    </header>
+    <div class="sidebar">
+        <a href="manage.html">
+            <i class="fa-solid fa-list"></i>
+            <span>Danh sách</span>
+        </a>
+        <a href="addProduct.html">
+            <i class="fa-solid fa-square-plus"></i>
+            <span>Thêm</span>
+        </a>
+        <a href="detail.html">
+            <i class="fa-solid fa-note-sticky"></i>
+            <span>Chi tiết</span>
+        </a>
+    </div>
+
+    <div class="content">
+        <div class="title">
+            Thêm món ăn
+        </div>
+        <form id="addForm" action="" method="">
+                <div class="input-div">
+                    <label for="imageB">Ảnh lớn</label>
+                    <input type="file" id="imageB" name="imageB" class="imageInput">
+                </div>
+                <div class="input-div">
+                    <label for="imageS">Ảnh nhỏ</label>
+                    <input type="file" id="imageS" name="imageS" class="imageInput">
+                </div>
+                <div class="input-div">
+                    <label for="name">Tên món</label>
+                    <input type="text" id="name" name="name" class="input">
+                </div>
+                <div class="input-div">
+                    <label for="">Mô tả ngắn</label>
+                    <textarea id="descriptionS" class="input textarea"></textarea>
+                </div>
+                <div class="input-div">
+                    <label for="">Mô tả đầy đủ</label>
+                    <textarea type="text" id="descriptionF" class="input textarea"></textarea>
+                </div>
+                <div class="input-div">
+                    <label for="address">Thông tin nhà cung cấp</label>
+                    <input type="text" id="address" name="address" class="input">
+                </div>
+                <div class="input-div btn-div">
+                    <input type="button" id="cancelBtn" value="Cancel" class="btn cancelBtn">
+                    <input type="submit" id="saveBtn" value="Save" class="btn saveBtn">
+                </div>
+        </form>
+    </div>
+</body>
+</html>
