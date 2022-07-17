@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset='utf-8'>
-    <title>Pay</title>
+    <title>Giỏ hàng</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' href='../css/style.css'>
     <script src='../js/index.js'></script>
@@ -15,15 +15,85 @@
         </div>
         <div class="right_area">
             <div class="item">
-                <i class="fa-solid fa-basket-shopping" onclick=""></i>
+                <a href="cartUI.html">
+                    <i class="fa-solid fa-basket-shopping" onclick=""></i>
+                </a>
             </div>
             <div class="item">
                 <a href="manage.html">Manage</a>
             </div>
         </div>
     </header>
-    <div class="content">
-
+    <div class="shopping-cart">
+        <div class="title">Thanh toán</div> 
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Tên món</th>
+                        <th>Đơn giá</th>
+                        <th>Số lượng</th>
+                        <th>Tổng tiền</th>
+                    </tr>
+                </thead>
+                <tbody id="item-list">
+                    <tr>
+                        <td><img src="../image/beef.jpg" ></td>
+                        <td>Beef</td>
+                        <td>100k</td>
+                        <td>1</td>
+                        <td>100k</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="font-weight: bold;">Tổng tiền:</td>
+                        <td id="totalPrice">100k</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div class="ship-container">
+        <div class="title">Thông tin giao hàng</div> 
+        <form id="shipForm" action="">
+            <div class="input-div">
+                <label for="imageB">Thành phố</label>
+                <select id="city" name="city">
+                    <option value="">Chọn</option>
+                    <option value="hanoi">Ha Noi</option>
+                </select>
+            </div>
+            <div class="input-div">
+                <label for="imageS">Quận (Huyện)</label>
+                <select id="quan" name="quan">
+                    <option value="">Chọn</option>
+                    <option value="cau giay">Cau Giay</option>
+                </select>
+            </div>
+            <div class="input-div">
+                <label for="name">Phường (Xã)</label>
+                <select id="phuong" name="phuogn">
+                    <option value="">Chọn</option>
+                    <option value="yenhoa">Yen Hoa</option>
+                </select>
+            </div>
+            <div class="input-div">
+                <label for="address">Địa chỉ giao hàng</label>
+                <input type="text" id="address" name="address" class="input" required>
+            </div>
+            <div class="input-div btn-div">
+                <input type="button" id="cancelBtn" value="Hủy" class="btn cancelBtn" onclick="window.location.href='home.html'">
+                <input type="submit" form="addForm" id="saveBtn" value="Thanh toán" class="btn payBtn">
+            </div>
+        </form>
+    </div>
+    <div class="paysuccess-message">
+        <p>Thanh toán thành công!</p>
     </div>
 </body>
 </html>

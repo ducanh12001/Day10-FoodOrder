@@ -20,18 +20,14 @@
     <div class="sidebar">
         <a href="manage.html">
             <i class="fa-solid fa-list"></i>
-            <span>List</span>
+            <span>Danh sách</span>
         </a>
         <a href="addProduct.html">
             <i class="fa-solid fa-square-plus"></i>
-            <span>Add</span>
-        </a>
-        <a href="detail.html">
-            <i class="fa-solid fa-note-sticky"></i>
-            <span>Details</span>
+            <span>Thêm</span>
         </a>
         <a href="home.html">
-            <i class="fa-solid fa-note-sticky"></i>
+            <i class="fa-solid fa-house"></i>
             <span>Home</span>
         </a>
     </div>
@@ -53,7 +49,7 @@
                             <th>Tên món</th>
                             <th>Mô tả ngắn</th>
                             <th>Đơn giá</th>
-                            <th>Điểm đánh giá</th>
+                            <th>Đánh giá</th>
                         </tr>
                     </thead>
                     <tbody id="dish-list">
@@ -75,11 +71,11 @@
         <form id="addForm" action="">
             <div class="input-div">
                 <label for="imageB">Ảnh lớn</label>
-                <input type="file" id="imageB" name="imageB" class="imageInput">
+                <input type="text" id="imageB" name="imageB" class="input" placeholder="Link ảnh" required>
             </div>
             <div class="input-div">
                 <label for="imageS">Ảnh nhỏ</label>
-                <input type="file" id="imageS" name="imageS" class="imageInput">
+                <input type="text" id="imageS" name="imageS" class="input" placeholder="Link ảnh" required>
             </div>
             <div class="input-div">
                 <label for="name">Tên món</label>

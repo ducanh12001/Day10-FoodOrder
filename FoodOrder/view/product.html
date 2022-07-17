@@ -15,7 +15,12 @@
         </div>
         <div class="right_area">
             <div class="item">
-                <i class="fa-solid fa-basket-shopping" onclick=""></i>
+                <a href="cartUI.html">
+                    <i class="fa-solid fa-basket-shopping" onclick=""></i>
+                    <div class="dish-num">
+                        <span class="num">0</span>
+                    </div>
+                </a>
             </div>
             <div class="item">
                 <a href="manage.html">Manage</a>
@@ -27,127 +32,12 @@
         <div class="title">
             Món ăn
         </div>
-        <div class="dish-container">
-            <div class="card">
-                <a href="productDetail.html">
-                    <img src="../image/beef.jpg" alt="">
-                </a>
-                <a href="productDetail.html">
-                    <div class="dish-name">Thịt kho</div>
-                </a>
-                <div class="data">
-                    <span class="price">100k</span>
-                    <span class="rate">4.5/5</span>
-                </div>
-                <p class="description">
-                        Nước kho mặn mặn ngọt ngọt thấm đều trong từng miếng thịt mềm ngon, trứng gà bùi bùi. Ăn với cơm
-                        nóng thì tuyệt vời
-                </p>
-                <div class="btn-group">
-                    <button type="button" class="button cartBtn" id="cartBtn" onclick="showToast()">Add to cart</button>
-                    <a href="" class="button orderBtn">Order Now</a>
-                </div>
-            </div>
-            <div class="card">
-                <a href="product.html">
-                    <img src="../image/beef.jpg" alt="">
-                </a>
-                <a href="product.html">
-                    <div class="dish-name">Thịt kho</div>
-                </a>
-                <div class="data">
-                    <span class="price">100k</span>
-                    <span class="rate">4.5/5</span>
-                </div>
-                <p class="description">
-                        Nước kho mặn mặn ngọt ngọt thấm đều trong từng miếng thịt mềm ngon, trứng gà bùi bùi. Ăn với cơm
-                        nóng thì tuyệt vời
-                </p>
-                <div class="btn-group">
-                    <button type="button" class="button cartBtn" id="cartBtn" onclick="showToast()">Add to cart</button>
-                    <a href="" class="button orderBtn" target="_blank">Order Now</a>
-                </div>
-            </div>
-            <div class="card">
-                <a href="product.html">
-                    <img src="../image/beef.jpg" alt="">
-                </a>
-                <a href="product.html">
-                    <div class="dish-name">Thịt kho</div>
-                </a>
-                <div class="data">
-                    <span class="price">100k</span>
-                    <span class="rate">4.5/5</span>
-                </div>
-                <p class="description">
-                        Nước kho mặn mặn ngọt ngọt thấm đều trong từng miếng thịt mềm ngon, trứng gà bùi bùi. Ăn với cơm
-                        nóng thì tuyệt vời
-                </p>
-                <div class="btn-group">
-                    <button type="button" class="button cartBtn" id="cartBtn" onclick="showToast()">Add to cart</button>
-                    <a href="" class="button orderBtn">Order Now</a>
-                </div>
-            </div>
-            <div class="card">
-                <a href="product.html">
-                    <img src="../image/beef.jpg" alt="">
-                </a>
-                <a href="product.html">
-                    <div class="dish-name">Thịt kho</div>
-                </a>
-                <div class="data">
-                    <span class="price">100k</span>
-                    <span class="rate">4.5/5</span>
-                </div>
-                <p class="description">
-                        Nước kho mặn mặn ngọt ngọt thấm đều trong từng miếng thịt mềm ngon, trứng gà bùi bùi. Ăn với cơm
-                        nóng thì tuyệt vời
-                </p>
-                <div class="btn-group">
-                    <button type="button" class="button cartBtn" id="cartBtn" onclick="showToast()">Add to cart</button>
-                    <a href="" class="button orderBtn">Order Now</a>
-                </div>
-            </div>
-            <div class="card">
-                <a href="product.html">
-                    <img src="../image/beef.jpg" alt="">
-                </a>
-                <a href="product.html">
-                    <div class="dish-name">Thịt kho</div>
-                </a>
-                <div class="data">
-                    <span class="price">100k</span>
-                    <span class="rate">4.5/5</span>
-                </div>
-                <p class="description">
-                        Nước kho mặn mặn ngọt ngọt thấm đều trong từng miếng thịt mềm ngon, trứng gà bùi bùi. Ăn với cơm
-                        nóng thì tuyệt vời
-                </p>
-                <div class="btn-group">
-                    <button type="button" class="button cartBtn" id="cartBtn" onclick="showToast()">Add to cart</button>
-                    <a href="" class="button orderBtn">Order Now</a>
-                </div>
-            </div>
-            <div class="card">
-                <a href="product.html">
-                    <img src="../image/beef.jpg" alt="">
-                </a>
-                <a href="product.html">
-                    <div class="dish-name">Thịt kho</div>
-                </a>
-                <div class="data">
-                    <span class="price">100k</span>
-                    <span class="rate">4.5/5</span>
-                </div>
-                <p class="description">
-                        Nước kho mặn mặn ngọt ngọt thấm đều trong từng miếng thịt mềm ngon, trứng gà bùi bùi. Ăn với cơm
-                        nóng thì tuyệt vời
-                </p>
-                <div class="btn-group">
-                    <button type="button" type="button" class="button cartBtn" id="cartBtn" onclick="showToast()">Add to cart</button>
-                    <a href="" class="button orderBtn">Order Now</a>
-                </div>
-            </div>
+        <div class="dish-container">  
+        </div>
+        <div class="pagination">
+            <a href="javascript:prevPage()" id="prevBtn">&laquo;</a>
+            <span id="page"></span>
+            <a href="javascript:nextPage()" id="nextBtn">&raquo;</a>
         </div>
     </div>
 
@@ -161,7 +51,7 @@
         </div>
       </div>
     </div>
-    <script src='../js/index.js'></script>
+    <script src='../js/product.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

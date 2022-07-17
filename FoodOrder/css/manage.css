@@ -24,7 +24,7 @@ header {
     position: fixed;
     margin-top: 70px;
     left: 0;
-    width: 250px;
+    width: 200px;
     height: 100%;
 }
 
@@ -48,7 +48,7 @@ header {
 }
 
 .content {
-    margin-left: 250px;
+    margin-left: 200px;
     position: fixed;
     margin-top: 70px;
     padding: 30px;
@@ -57,7 +57,7 @@ header {
     position:fixed;
     overflow-y:scroll;
     overflow-x:hidden;
-    width: calc(100% - 250px - 60px);
+    width: calc(100% - 200px - 60px);
 }
 
 /*list*/
@@ -117,6 +117,12 @@ header {
 
 .table-container table tbody a:hover {
     color: red;
+}
+
+.table-container table tbody img {
+    width: 100px;
+    height: 60px;
+    object-fit: cover;
 }
 
 /*add*/

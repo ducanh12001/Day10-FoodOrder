@@ -5,7 +5,6 @@
     <title>Giỏ hàng</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' href='../css/style.css'>
-    <script src='../js/index.js'></script>
     <script src="https://kit.fontawesome.com/47be3b846d.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -15,15 +14,37 @@
         </div>
         <div class="right_area">
             <div class="item">
-                <i class="fa-solid fa-basket-shopping" onclick=""></i>
+                <a href="cartUI.html">
+                    <i class="fa-solid fa-basket-shopping" onclick=""></i>
+                </a>
             </div>
             <div class="item">
                 <a href="manage.html">Manage</a>
             </div>
         </div>
     </header>
-    <div class="content">
-
+    <div class="shopping-cart">
+        <div class="title">Giỏ hàng</div> 
+        <span class="nodish-message"></span>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Tên món</th>
+                        <th>Đơn giá</th>
+                        <th>Số lượng</th>
+                        <th>Xóa</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-list">
+                </tbody>
+            </table>
+        </div>
+        <div class="btn-container">
+            <button type="button" onclick="window.location.href='payUI.html'" class="payBtn">Thanh toán</button>
+        </div>
     </div>
+    <script src='../js/cart.js'></script>
 </body>
 </html>

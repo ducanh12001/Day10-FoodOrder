@@ -1,6 +1,7 @@
-body {
+* {
     margin: 0;
     padding: 0;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 header {
@@ -39,6 +40,25 @@ header {
     color: red;
 }
 
+.right_area .item a .dish-num {
+    position: absolute;
+    background-color: orange;
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+    top: 10px;
+    right: 90px;
+}
+
+.right_area .item a .dish-num .num {
+    color: #fff;
+    font-size: 75%;
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+}
+
 .right_area .item i {
     cursor: pointer;
 }
@@ -72,7 +92,7 @@ header {
 
 .card-container .card img {
     max-width: 100%;
-    max-height: 100%;
+    height: 200px;
     margin-bottom: 10px;
 }
 
@@ -84,9 +104,8 @@ header {
 /*dishes*/
 .dish-container {
     display: grid;
-    gap: 2%;
+    gap: 25px;
     grid-template-columns: repeat(5, 18.4%);
-    grid-template-rows: repeat(4, auto);
 }
 
 .dish-container .card {
@@ -102,8 +121,8 @@ header {
 }
 
 .dish-container .card img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 130px;
     object-fit: cover;
     margin-bottom: 5px;
 }
@@ -111,13 +130,13 @@ header {
 .dish-container .card .dish-name {
     font-size: 18px;
     color: #ff0099;
-    margin-bottom: .4rem;
 }
 
 .dish-container .card .data {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex:1;
 }
 
 .dish-container .card .price {
@@ -132,64 +151,67 @@ header {
     display: -webkit-box;
    -webkit-line-clamp: 2; 
    -webkit-box-orient: vertical;
+    flex:2;
 }
 
 .dish-container .card .btn-group{
     display: flex;
     justify-content: space-around;
     align-items: center;
+    flex:1;
 }
 
 .dish-container .card .button,
-.container .dish-info .button {
+.cart-container .dish-info .button {
     padding: 5px 6px;
     border-radius: 5px;
     outline: none;
     border: 1px solid gray;
     font-size: 15px;
+    text-align: center;
 }
 
 .dish-container .card .cartBtn,
-.container .dish-info .cartBtn {
+.cart-container .dish-info .cartBtn {
     background-color: black;
     color: white;
 }
 
 .dish-container .card .cartBtn:hover,
-.container .dish-info .cartBtn:hover {
+.cart-container .dish-info .cartBtn:hover {
     background-color: rgb(49, 48, 48);
     cursor: pointer;
 }
 
 .dish-container .card .orderBtn,
-.container .dish-info .orderBtn {
+.cart-container .dish-info .orderBtn {
     background-color: red;
     color: white;
 }
 
 .dish-container .card .orderBtn:hover,
-.container .dish-info .orderBtn:hover {
+.cart-container .dish-info .orderBtn:hover {
     background-color: rgb(200, 0, 0);
 }
 
 /*productDetails */
-.container {
+.cart-container {
     display: flex;
     align-items: center;
     justify-content: space-around;
     padding: 30px;
 }
 
-.container .dish-image {
+.cart-container .dish-image {
     width: 40%;
 }
 
-.container img {
+.cart-container img {
     max-width: 100%;
     max-height: 100%;
 }
 
-.container .dish-info {
+.cart-container .dish-info {
     width: 55%;
     display: flex;
     flex-direction: column;
@@ -198,18 +220,18 @@ header {
     padding: 15px;
 }
 
-.container .dish-info .address {
+.cart-container .dish-info .address {
     font-size: 14px;
     margin-bottom: 10px;
 }
 
-.container .dish-info .rating {
+.cart-container .dish-info .rating {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
 }
 
-.container .dish-info .number-rating {
+.cart-container .dish-info .number-rating {
     background-color: orange;
     border-radius: 5px;
     padding: 1px 7px;
@@ -217,21 +239,21 @@ header {
     text-align: center;
 }
 
-.container .dish-info .price {
+.cart-container .dish-info .price {
     margin-bottom: 20px;
 }
 
-.container .dish-info .btn-group {
+.cart-container .dish-info .btn-group {
     display: flex;
     border-top: 1px solid gray;
     padding: 10px;
 }
 
-.container .dish-info .btn-group a {
+.cart-container .dish-info .btn-group a {
     text-decoration: none;
 }
 
-.container .dish-info .cartBtn {
+.cart-container .dish-info .cartBtn {
     margin-right: 20px;
 }
 
@@ -242,8 +264,9 @@ header {
 
 .comment-container {
     display: grid;
-    gap: 10%;
+    gap: 30px;
     grid-template-columns: repeat(2, 25%);
+    
 }
 
 .comment-card {
@@ -266,4 +289,228 @@ header {
 
 .comment-card .comment {
     font-size: 15px;
+}
+
+/*cart*/
+.shopping-cart {
+    box-shadow: 2px 2px 4px #ddd;
+    padding: 20px;
+    margin: auto;
+    max-width: 800px;
+    background-color: rgb(245, 255, 220);
+    margin-top: 25px;
+}
+
+.shopping-cart .title, .ship-container .title {
+    font-size: 20px;
+    font-weight: bold;
+    color: red;
+}
+
+.shopping-cart .nodish-message {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.shopping-cart .table-container {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.shopping-cart img {
+    width: 60px;
+    height: 60px;
+}
+
+.shopping-cart table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+.shopping-cart table tr {
+    border-bottom: 1.5px solid gray;
+}
+
+.shopping-cart table th, td {
+    padding: 10px;
+}
+
+.item-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.item-button button {
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid gray;
+    background-color: #d7dbe7;
+    padding: 3px 7px;
+}
+
+.item-button button:hover {
+    background-color: #ddd;
+}
+
+.trash-icon:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.shopping-cart .btn-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.shopping-cart .payBtn {
+    background-color: blue;
+    color: white;
+    padding: 7px 10px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    outline: none;
+}
+
+.shopping-cart .payBtn:hover {
+    cursor: pointer;
+    background-color: rgb(27, 27, 154);
+}
+
+/*pay*/
+.ship-container {
+    box-shadow: 2px 2px 4px #ddd;
+    padding: 20px;
+    max-width: 1000px;
+    background-color: rgb(245, 255, 220);
+    margin: 25px auto;
+}
+
+.ship-container #shipForm {
+    width: 100%;
+    margin: 20px 0 0 10px;
+}
+
+.ship-container #shipForm .input-div {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.ship-container #shipForm .input-div label {
+    width: 200px;
+    font-size: 18px;
+}
+
+.ship-container #shipForm .input-div select {
+    border-radius: 4px;
+    font: inherit;
+    padding: 8px 40px 8px 16px;
+    box-sizing: border-box;
+}
+
+.ship-container #shipForm .input-div option {
+    padding: 5px 20px;
+}
+
+.ship-container #shipForm .input-div input[type="text"] {
+    width: 50%;
+    font: inherit;
+    outline: none;
+    border: 1px solid black;
+    font-size: 15px;
+    padding: 7px 8px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.ship-container #shipForm .btn-div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 0;
+}
+
+.ship-container #shipForm .btn-div .btn {
+    padding: 7px 10px;
+    margin-right: 30px;
+    border-radius: 5px;
+    color: white;
+    border: 1px solid gray;
+    outline: none;
+}
+
+.ship-container #shipForm .btn-div .payBtn {
+    background-color: blue;
+}
+
+.ship-container #shipForm .btn-div .payBtn:hover{
+    cursor: pointer;
+    background-color: rgb(27, 27, 154);
+}
+
+.ship-container #shipForm .btn-div .cancelBtn {
+    background-color: red;
+    color: white;
+    border: 1px solid gray;
+    outline: none;
+}
+
+.ship-container #shipForm .btn-div .cancelBtn:hover {
+    cursor: pointer;
+    background-color: rgb(158, 15, 15);
+}
+
+/*paysuccess*/
+.paysuccess-message {
+    max-width: 300px;
+    max-height: 100px;
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: rgb(138, 222, 175);
+    text-align: center;
+    margin: 100px auto;
+    display: none;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 18px;
+    margin-top: 10px;
+}
+  
+.pagination a {
+    color: black;
+    float: left;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+    color: red;
+}
+
+@media (min-width: 320px) {
+    .dish-container {
+        gap: 10px;
+        grid-template-columns: 97%;
+    }
+}
+
+@media (min-width: 768px) {
+    .dish-container {
+        gap: 15px;
+        grid-template-columns: repeat(2, 48.4%);
+    }
+}
+
+@media (min-width: 1024px) {
+    .dish-container {
+        gap: 15px;
+        grid-template-columns: repeat(5, 18.4%);
+    }
 }

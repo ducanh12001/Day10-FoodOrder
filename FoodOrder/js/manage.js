@@ -41,10 +41,10 @@ function renderTable() {
     }).forEach((dish, index) => {
         result += `<tr>
         <td>${(currentPage-1)*itemPerPage + index + 1}</td>
-        <td></td>
+        <td><img src="${dish.imageS}" alt="${dish.name}"></td>
         <td><a href="">${dish.name}</a></td>
         <td>${dish.descriptionS}</td>
-        <td>${dish.price}</td>
+        <td>${dish.price}đ</td>
         <td>${dish.rate}</td></tr>
         `
     })
@@ -110,6 +110,18 @@ function searchValue() {
     }
 }
 
+async function postData(url = '', data = {}) {
+    const response = await fetch(url, {
+      method: 'POST', 
+      mode: 'cors', 
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    return response.json(); 
+  }
+
 //add to localStorage
 document.querySelector("#saveBtn").addEventListener("click", (e) => {
     e.preventDefault()
@@ -125,6 +137,7 @@ document.querySelector("#saveBtn").addEventListener("click", (e) => {
     } else {
         const newDish = new Dish(imageB, imageS, dishName, descriptionS, descriptionF, address)
         addDishStore(newDish);
+        //postData('https://62cfe5951cc14f8c087fabdf.mockapi.io/api/products', newDish)
         var x = document.getElementById("snackbar");
         x.className = "show";
         setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
