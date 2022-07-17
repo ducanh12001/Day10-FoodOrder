@@ -7,6 +7,10 @@ function closeForm() {
     clearInput();
 }
 
+function closeDetailForm() {
+    document.querySelector('.detail-container').style.display = 'none';
+}
+
 class Dish {
     constructor(imageB, imageS, name, descriptionS, descriptionF, address) {
         this.imageB = imageB;
@@ -42,13 +46,57 @@ function renderTable() {
         result += `<tr>
         <td>${(currentPage-1)*itemPerPage + index + 1}</td>
         <td><img src="${dish.imageS}" alt="${dish.name}"></td>
-        <td><a href="">${dish.name}</a></td>
+        <td><a href="" class="dish-details">${dish.name}</a></td>
         <td>${dish.descriptionS}</td>
         <td>${dish.price}đ</td>
         <td>${dish.rate}</td></tr>
         `
     })
     table.innerHTML = result;
+
+    let details = document.querySelectorAll('.dish-details');
+    for (let i = 0; i < details.length; i++) {
+        let result = '';
+        details[i].addEventListener('click', (e) => {
+            e.preventDefault();
+            //console.log(e.target)
+            document.querySelector('.detail-container').style.display = 'block';
+            document.querySelector('.dish-details .details').innerHTML = `
+            <div class="input-div">
+                <label for="imageB">Ảnh lớn</label>
+                <img href="${DishList[i].imageB}" alt="">
+            </div>
+            <div class="input-div">
+                <label for="imageS">Ảnh nhỏ</label>
+                <img href="${DishList[i].imageS}" alt="">
+            </div>
+            <div class="input-div">
+                <label for="name">Tên món</label>
+                <div class="detail-name">${DishList[i].name}</div>
+            </div>
+            <div class="input-div">
+                <label for="name">Giá</label>
+                <div class="detail-name">${DishList[i].price}đ</div>
+            </div>
+            <div class="input-div">
+                <label for="name">Đánh giá</label>
+                <div class="detail-name">${DishList[i].rate}</div>
+            </div>
+            <div class="input-div">
+                <label for="">Mô tả ngắn</label>
+                <div class="detail-descriptionS">${DishList[i].descriptionS}</div>
+            </div>
+            <div class="input-div">
+                <label for="">Mô tả đầy đủ</label>
+                <div class="detail-descriptionF">${DishList[i].descriptionF}</div>
+            </div>
+            <div class="input-div">
+                <label for="address">Thông tin nhà cung cấp</label>
+                <div class="detail-address">${DishList[i].address}</div>
+            </div>
+            `
+        })
+    }
 }
 
 function prevPage() {

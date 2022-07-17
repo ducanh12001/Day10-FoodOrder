@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', init3, false);
 
-async function init3() {
+function init3() {
     renderCart();
     renderNumCart()
     PlusMinus();
@@ -83,6 +83,7 @@ function PlusMinus() {
                     localStorage.setItem('totalPrice', totalPrice);
                 }
             })
+            var a = Object.values(cartList).filter(dish => cartList[dish.id].quantity !==0)
             init3()
         })
     }
@@ -105,23 +106,22 @@ function PlusMinus() {
     }
 }
 
-function renderAddress() {
+async function renderAddress() {
     renderCity();
     let citySelect = document.querySelector('#city');
-    citySelect.addEventListener('change', () => {
+    citySelect?.addEventListener('change', () => {
         if (citySelect.value) {
             renderQuan(citySelect.value);
         }
     })
     
     let quanSelect = document.querySelector('#quan');
-    quanSelect.addEventListener('change', () => {
+    quanSelect?.addEventListener('change', () => {
         if (quanSelect.value) {
             renderPhuong(quanSelect.value)
         }
     })
 }
-
 
 async function renderCity() {
     let citySelect = document.querySelector('#city');

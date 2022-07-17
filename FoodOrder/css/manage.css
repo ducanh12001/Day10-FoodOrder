@@ -126,7 +126,7 @@ header {
 }
 
 /*add*/
-.add-container {
+.add-container, .detail-container {
     max-width: 500px;
     width: 100%;
     background-color: lightblue;
@@ -139,7 +139,7 @@ header {
     display: none;
 }
 
-.add-container .title {
+.add-container .title, .detail-container .title {
     display: flex;
     flex-direction: column;
     font-size: 24px;
@@ -160,13 +160,13 @@ header {
     width: 100%;
 }
 
-.add-container #addForm .input-div {
+.add-container #addForm .input-div, .detail-container .input-div {
     margin-bottom: 15px;
     display: flex;
     align-items: center;
 }
 
-.add-container #addForm .input-div label {
+.add-container #addForm .input-div label, .detail-container .input-div label {
     width: 200px;
     margin-right: 10px;
     font-size: 14px;
@@ -195,13 +195,13 @@ header {
     border: 1px solid black;
 }
 
-.add-container #addForm .btn-div {
+.add-container #addForm .btn-div, .detail-container .btn-div {
     display: flex;
     justify-content: space-around;
     margin-bottom: 0;
 }
 
-.add-container #addForm .input-div .btn {
+.add-container #addForm .input-div .btn, .detail-container .input-div .btn {
     padding: 8px 10px;
     font-size: 15px;
     cursor: pointer;
@@ -214,7 +214,7 @@ header {
     background-color: green;
 }
 
-.add-container #addForm .input-div .cancelBtn {
+.add-container #addForm .input-div .cancelBtn, .detail-container .input-div .closeBtn {
     background-color: gray;
 }
 
@@ -222,7 +222,7 @@ header {
     background-color: rgb(20, 99, 30);
 }
 
-.add-container #addForm .input-div .cancelBtn:hover {
+.add-container #addForm .input-div .cancelBtn:hover, .detail-container .input-div .closeBtn:hover {
     background-color: rgb(98, 99, 98);
 }
 
@@ -245,6 +245,8 @@ header {
     background-color: #ddd;
     color: red;
 }
+
+/*detail*/
 
 @media (max-width: 420px) {
     .add-container #addForm .input-div {
