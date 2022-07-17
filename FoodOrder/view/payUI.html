@@ -5,7 +5,6 @@
     <title>Giỏ hàng</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' href='../css/style.css'>
-    <script src='../js/index.js'></script>
     <script src="https://kit.fontawesome.com/47be3b846d.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -17,6 +16,9 @@
             <div class="item">
                 <a href="cartUI.html">
                     <i class="fa-solid fa-basket-shopping" onclick=""></i>
+                    <div class="dish-num">
+                        <span class="num">0</span>
+                    </div>
                 </a>
             </div>
             <div class="item">
@@ -37,24 +39,8 @@
                         <th>Tổng tiền</th>
                     </tr>
                 </thead>
-                <tbody id="item-list">
-                    <tr>
-                        <td><img src="../image/beef.jpg" ></td>
-                        <td>Beef</td>
-                        <td>100k</td>
-                        <td>1</td>
-                        <td>100k</td>
-                    </tr>
+                <tbody id="pay-list">
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td style="font-weight: bold;">Tổng tiền:</td>
-                        <td id="totalPrice">100k</td>
-                    </tr>
-                </tfoot>
             </table>
         </div>
     </div>
@@ -64,22 +50,19 @@
             <div class="input-div">
                 <label for="imageB">Thành phố</label>
                 <select id="city" name="city">
-                    <option value="">Chọn</option>
-                    <option value="hanoi">Ha Noi</option>
+                    <option selected="selected" value="">Chọn</option>
                 </select>
             </div>
             <div class="input-div">
                 <label for="imageS">Quận (Huyện)</label>
                 <select id="quan" name="quan">
                     <option value="">Chọn</option>
-                    <option value="cau giay">Cau Giay</option>
                 </select>
             </div>
             <div class="input-div">
                 <label for="name">Phường (Xã)</label>
-                <select id="phuong" name="phuogn">
+                <select id="phuong" name="phuong">
                     <option value="">Chọn</option>
-                    <option value="yenhoa">Yen Hoa</option>
                 </select>
             </div>
             <div class="input-div">
@@ -88,12 +71,13 @@
             </div>
             <div class="input-div btn-div">
                 <input type="button" id="cancelBtn" value="Hủy" class="btn cancelBtn" onclick="window.location.href='home.html'">
-                <input type="submit" form="addForm" id="saveBtn" value="Thanh toán" class="btn payBtn">
+                <input type="submit" form="addForm" id="payBtn" value="Thanh toán" class="btn payBtn">
             </div>
         </form>
     </div>
     <div class="paysuccess-message">
         <p>Thanh toán thành công!</p>
     </div>
+    <script src='../js/cart.js'></script>
 </body>
 </html>

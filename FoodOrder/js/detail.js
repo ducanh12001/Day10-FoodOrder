@@ -1,7 +1,4 @@
-document.addEventListener('DOMContentLoaded', main, false);
-function main() {
-    init();
-}
+document.addEventListener('DOMContentLoaded', init, false);
 
 let CommentList, card;
 async function init() {

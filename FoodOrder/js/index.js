@@ -6,6 +6,7 @@ async function init() {
     let res = await fetch(`https://62cfe5951cc14f8c087fabdf.mockapi.io/api/type`);
     TypeList = await res.json();
     renderCard()
+    renderNumCart()
 }
 
 function renderCard() {
@@ -21,4 +22,11 @@ function renderCard() {
         `
     })
     card.innerHTML = result;
+}
+
+function renderNumCart() {
+    let numCart = localStorage.getItem('numInCart');
+    if (numCart) {
+        document.querySelector('.dish-num .num').innerHTML = numCart;
+    }
 }

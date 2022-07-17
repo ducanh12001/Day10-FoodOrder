@@ -14,12 +14,12 @@ function renderCard2() {
         result += `
         <div class="card">
             <div style="flex:2">
-                <a href="productDetail.html">
+                <a class="go-to-detail" href="productDetail.html">
                     <img class="dish-image" src="${dish.imageS}" alt="${dish.name}">
                 </a>
             </div>
             <div style="flex:1">
-                <a href="productDetail.html">
+                <a class="go-to-detail" href="productDetail.html">
                     <div class="dish-name">${dish.name}</div>
                 </a>
             </div>
@@ -86,16 +86,6 @@ function showToast() {
     toast.show()
 }
 
-function addToCart() {
-    var image = document.querySelector('.dish-image').src;
-    var name = document.querySelector('.dish-name').innerHTML;
-    var price = document.querySelector('.price').innerHTML;
-    var num=1;
-    const newDish = new Cart(image, name, price, num);
-    addCartStore(newDish);
-    showToast();
-}
-
 function numInCart(dish) {
     let numCart = localStorage.getItem('numInCart');
     if (numCart) {
@@ -110,22 +100,16 @@ function numInCart(dish) {
 function setInCart(dish) {
     let carts = localStorage.getItem('dishInCart');
     carts = JSON.parse(carts);
-    let dishObj = {
-        name: dish.name,
-        image: dish.imageS,
-        price: dish.price,
-        quantity: 1       
-    }
-    
     if (carts!== null) {
         if (carts[dish.id] === undefined) {
             carts = {
                 ...carts,
                 [dish.id]: {
+                    id: dish.id,
                     name: dish.name,
                     image: dish.imageS,
                     price: dish.price,
-                    quantity: 1
+                    quantity: 0
                 }
             }
         }
@@ -134,6 +118,7 @@ function setInCart(dish) {
         //dish.quantity = 1;
         carts = {
             [dish.id]: {
+                id: dish.id,
                 name: dish.name,
                 image: dish.imageS,
                 price: dish.price,
@@ -152,7 +137,6 @@ function totalPrice(dish) {
     } else {
         localStorage.setItem('totalPrice', dish.price);
     }
-    console.log(priceCart)
 }
 
 function renderNumCart() {
@@ -162,20 +146,30 @@ function renderNumCart() {
     }
 }
 
-function getCartStore() {
-    let myCart;
-    if (localStorage.getItem('cart') === null) {
-        myCart = []
-    } else {
-        myCart = JSON.parse(localStorage.getItem('cart'));
-    }
-    return myCart;
-}
-
-function addCartStore(dish) {
-    const dishes = getCartStore();
-    dishes.push(dish);
-    localStorage.setItem("cart", JSON.stringify(dishes))
+function renderDetail(dish) {
+    let dishInfo = document.querySelector('.cart-container');
+    let result = `
+    <div class="dish-image">
+        <img src="${dish.imageB}" alt="">
+    </div>
+    <div class="dish-info">
+        <h3 class="name-dish">${dish.name}</h3>
+        <div class="address">${dish.address}</div>
+        <div class="rating">
+            <div class="point">${dish.rate}/5</div>
+            <div class="number-rating">10</div>
+        </div>
+        <div class="price">
+            <i class="fa-solid fa-dollar-sign"></i>
+            ${dish.price}đ
+        </div>
+        <div class="btn-group">
+            <button type="button" class="button cartBtn">Add to cart</button>
+            <a href="" class="button orderBtn">Order Now</a>
+        </div>
+    </div>
+    `
+    dishInfo.innerHTML = result;
 }
 
 async function init2() {
@@ -192,5 +186,24 @@ async function init2() {
             showToast()
         })
     }
+    let orders = document.querySelectorAll('.button.orderBtn');
+    renderNumCart()
+    for (let i = 0; i < orders.length; i++) {
+        orders[i].addEventListener('click', () => {
+            numInCart(DishList[i])
+            totalPrice(DishList[i])
+            renderNumCart()
+            window.location.href='payUI.html'
+        })
+    }
+    /*
+    let details = document.querySelectorAll('.go-to-detail');
+    for (let i = 0; i < details.length; i++) {
+        details[i].addEventListener('click', (e) => {
+            e.preventDefault()
+            renderDetail(DishList[i]);
+            //e.target.href = 'productDetail.html'
+        })
+    }*/
 }
 init2();
