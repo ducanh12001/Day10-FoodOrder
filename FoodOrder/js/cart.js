@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', init3, false);
 
 function init3() {
     renderCart();
-    renderNumCart()
     PlusMinus();
-    renderAddress()
+    renderAddress();
+    renderNumCart()
 }
 
 let cartList;
@@ -20,7 +20,7 @@ function renderCart() {
             cartTable.innerHTML += `
             <tr>
                 <td><img src="${dish.image}" ></td>
-                <td>${dish.name}</td>
+                <td style="text-align: left">${dish.name}</td>
                 <td>${dish.price}đ</td>
                 <td>
                     <div class="item-button">
@@ -29,14 +29,26 @@ function renderCart() {
                         <button type="button" value="${dish.id}" class="plusBtn">+</button>
                     </div>
                 </td>
+                <td style="text-align:right">${dish.quantity * dish.price}đ</td>
                 <td>
-                    <a class="trash-icon">
+                    <button type="button" value="${dish.id}" class="trash-icon">
                         <i class="fa-solid fa-trash-can"></i>
-                    </a>
+                    </button>
                 </td>
             </tr>
             `
         })
+        cartTable.innerHTML += `
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="font-weight: bold;">Tổng tiền:</td>
+                <td style="text-align:right" id="totalPrice">${priceCart}đ</td>
+            </tr>
+        </tfoot>
+        `
     }
     if (cartList && payTable) {
         payTable.innerHTML = '';
@@ -70,7 +82,7 @@ function PlusMinus() {
     totalPrice = parseFloat(totalPrice);
     let numInCart = localStorage.getItem('numInCart');
     numInCart = parseFloat(numInCart);
-    let minusBtns = document.querySelectorAll('.minusBtn')
+    let minusBtns = document.querySelectorAll('.minusBtn');
     for (let i=0; i<minusBtns.length; i++) {
         minusBtns[i].addEventListener('click', (e) => {
             Object.values(cartList).map(dish => {
@@ -81,9 +93,12 @@ function PlusMinus() {
                     localStorage.setItem('numInCart', numInCart);
                     totalPrice = totalPrice - cartList[dish.id].price;
                     localStorage.setItem('totalPrice', totalPrice);
+                    if (cartList[dish.id].quantity === 0) {
+                        delete cartList[dish.id];
+                    }
+                    localStorage.setItem('dishInCart', JSON.stringify(cartList));
                 }
             })
-            var a = Object.values(cartList).filter(dish => cartList[dish.id].quantity !==0)
             init3()
         })
     }
@@ -99,6 +114,23 @@ function PlusMinus() {
                     localStorage.setItem('numInCart', numInCart);
                     totalPrice = totalPrice + cartList[dish.id].price;
                     localStorage.setItem('totalPrice', totalPrice);
+                }
+            })
+            init3()
+        })
+    }
+
+    let trash = document.querySelectorAll('.trash-icon');
+    for (let i = 0; i < trash.length; i++) {
+        trash[i].addEventListener('click', (e) => {
+            Object.values(cartList).map(dish => {
+                if (dish.id === e.target.parentElement.value) {
+                    numInCart = numInCart - dish.quantity;
+                    localStorage.setItem('numInCart', numInCart);
+                    totalPrice = totalPrice - cartList[dish.id].price * cartList[dish.id].quantity;
+                    localStorage.setItem('totalPrice', totalPrice);
+                    delete cartList[dish.id];
+                    localStorage.setItem('dishInCart', JSON.stringify(cartList));
                 }
             })
             init3()
@@ -172,8 +204,19 @@ document.querySelector('#payBtn').addEventListener('click', () => {
     document.querySelector('.shopping-cart').style.display = 'none';
     document.querySelector('.ship-container').style.display = 'none';
     document.querySelector('.paysuccess-message').style.display = 'block';
+    document.querySelector('.dish-num .num').innerHTML = 0;
     localStorage.clear()
 })
+
+function goToPay() {
+    if (Object.values(cartList).length !== 0) {
+        window.location.href = 'payUI.html'
+    } else {
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    }
+}
 
 function renderNumCart() {
     let numCart = localStorage.getItem('numInCart');

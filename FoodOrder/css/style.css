@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 header {
@@ -21,6 +22,10 @@ header {
     font-size: 22px;
     font-weight: 900;
 }   
+
+.left_area a:hover {
+    color: blue;
+}
 
 .right_area {
     display: flex;
@@ -78,7 +83,7 @@ header {
     display: grid;
     gap: 4%;
     grid-template-columns: repeat(3, 30.66%);
-    padding: 0 150px;
+    padding: 0 100px;
 }
 
 .card-container .card a {
@@ -128,7 +133,7 @@ header {
 }
 
 .dish-container .card .dish-name {
-    font-size: 18px;
+    font-size: 16px;
     color: #ff0099;
 }
 
@@ -354,6 +359,12 @@ header {
     background-color: #ddd;
 }
 
+.trash-icon {
+    background: none;
+    border: none;
+    font-size: 15px
+}
+
 .trash-icon:hover {
     color: red;
     cursor: pointer;
@@ -494,21 +505,21 @@ header {
     color: red;
 }
 
-@media (min-width: 320px) {
+@media (max-width: 480px) {
     .dish-container {
         gap: 10px;
         grid-template-columns: 97%;
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 481px) {
     .dish-container {
         gap: 15px;
         grid-template-columns: repeat(2, 48.4%);
     }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 859px) {
     .dish-container {
         gap: 15px;
         grid-template-columns: repeat(5, 18.4%);

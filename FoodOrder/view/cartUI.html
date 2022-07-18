@@ -5,6 +5,7 @@
     <title>Giỏ hàng</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' href='../css/style.css'>
+    <link rel='stylesheet' href='../css/toast.css'>
     <script src="https://kit.fontawesome.com/47be3b846d.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -26,6 +27,7 @@
             </div>
         </div>
     </header>
+    <div id="snackbar" class="error">Bạn chưa có sản phẩm nào.</div>
     <div class="shopping-cart">
         <div class="title">Giỏ hàng</div> 
         <span class="nodish-message"></span>
@@ -34,10 +36,11 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Tên món</th>
-                        <th>Đơn giá</th>
-                        <th>Số lượng</th>
-                        <th>Xóa</th>
+                        <td style="text-align:left">Tên món</td>
+                        <td>Đơn giá</td>
+                        <td>Số lượng</td>
+                        <td style="text-align:right">Tổng</td>
+                        <td>Xóa</td>
                     </tr>
                 </thead>
                 <tbody id="cart-list">
@@ -45,7 +48,7 @@
             </table>
         </div>
         <div class="btn-container">
-            <button type="button" onclick="window.location.href='payUI.html'" class="payBtn">Thanh toán</button>
+            <button type="button" onclick="goToPay()" class="payBtn">Thanh toán</button>
         </div>
     </div>
     <script src='../js/cart.js'></script>

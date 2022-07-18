@@ -36,7 +36,7 @@ async function init() {
 }
 
 function renderTable() {
-    let result ='';
+    let result = '';
     DishList.filter((dish, index) => {
         let start = (currentPage - 1) * itemPerPage;
         let end = currentPage * itemPerPage;
@@ -44,7 +44,7 @@ function renderTable() {
         if (index >= start && index < end) return true;
     }).forEach((dish, index) => {
         result += `<tr>
-        <td>${(currentPage-1)*itemPerPage + index + 1}</td>
+        <td>${(currentPage - 1) * itemPerPage + index + 1}</td>
         <td><img src="${dish.imageS}" alt="${dish.name}"></td>
         <td><a href="" class="dish-details">${dish.name}</a></td>
         <td>${dish.descriptionS}</td>
@@ -55,46 +55,49 @@ function renderTable() {
     table.innerHTML = result;
 
     let details = document.querySelectorAll('.dish-details');
-    for (let i = 0; i < details.length; i++) {
-        let result = '';
-        details[i].addEventListener('click', (e) => {
+    let curPage = document.querySelector('#page').innerHTML;
+    curPage = curPage.slice(0, 1);
+    curPage = parseFloat(curPage);
+    for (let i = 0, j = (curPage - 1) * itemPerPage; i < details.length, j < DishList.length; i++, j++) {
+        details[i]?.addEventListener('click', (e) => {
             e.preventDefault();
             //console.log(e.target)
+            document.querySelector('.detail-container .details').innerHTML = `
+                <div class="input-div">
+                    <label for="imageB">Ảnh lớn</label>
+                    <img class="detail imageB" src="${DishList[j].imageB}" alt="${DishList[j].name}">
+                </div>
+                <div class="input-div">
+                    <label for="imageS">Ảnh nhỏ</label>
+                    <img class="detail imageS" src="${DishList[j].imageS}" alt="${DishList[j].name}">
+                </div>
+                <div class="input-div">
+                    <label for="name">Tên món</label>
+                    <div class="detail name">${DishList[j].name}</div>
+                </div>
+                <div class="input-div">
+                    <label for="name">Giá</label>
+                    <div class="detail price">${DishList[j].price}đ</div>
+                </div>
+                <div class="input-div">
+                    <label for="name">Đánh giá</label>
+                    <div class="detail rate">${DishList[j].rate}</div>
+                </div>
+                <div class="input-div">
+                    <label for="">Mô tả ngắn</label>
+                    <div class="detail descriptionS">${DishList[j].descriptionS}</div>
+                </div>
+                <div class="input-div">
+                    <label for="">Mô tả đầy đủ</label>
+                    <div class="detail descriptionF">${DishList[j].descriptionF}</div>
+                </div>
+                <div class="input-div">
+                    <label for="address">Thông tin nhà cung cấp</label>
+                    <div class="detail address">${DishList[j].address}</div>
+                </div>
+                `
+
             document.querySelector('.detail-container').style.display = 'block';
-            document.querySelector('.dish-details .details').innerHTML = `
-            <div class="input-div">
-                <label for="imageB">Ảnh lớn</label>
-                <img href="${DishList[i].imageB}" alt="">
-            </div>
-            <div class="input-div">
-                <label for="imageS">Ảnh nhỏ</label>
-                <img href="${DishList[i].imageS}" alt="">
-            </div>
-            <div class="input-div">
-                <label for="name">Tên món</label>
-                <div class="detail-name">${DishList[i].name}</div>
-            </div>
-            <div class="input-div">
-                <label for="name">Giá</label>
-                <div class="detail-name">${DishList[i].price}đ</div>
-            </div>
-            <div class="input-div">
-                <label for="name">Đánh giá</label>
-                <div class="detail-name">${DishList[i].rate}</div>
-            </div>
-            <div class="input-div">
-                <label for="">Mô tả ngắn</label>
-                <div class="detail-descriptionS">${DishList[i].descriptionS}</div>
-            </div>
-            <div class="input-div">
-                <label for="">Mô tả đầy đủ</label>
-                <div class="detail-descriptionF">${DishList[i].descriptionF}</div>
-            </div>
-            <div class="input-div">
-                <label for="address">Thông tin nhà cung cấp</label>
-                <div class="detail-address">${DishList[i].address}</div>
-            </div>
-            `
         })
     }
 }
@@ -135,8 +138,7 @@ function changePage(page) {
     }
 }
 
-function numPages()
-{
+function numPages() {
     return Math.ceil(DishList.length / itemPerPage);
 }
 
@@ -160,15 +162,15 @@ function searchValue() {
 
 async function postData(url = '', data = {}) {
     const response = await fetch(url, {
-      method: 'POST', 
-      mode: 'cors', 
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
     });
-    return response.json(); 
-  }
+    return response.json();
+}
 
 //add to localStorage
 document.querySelector("#saveBtn").addEventListener("click", (e) => {
@@ -180,7 +182,7 @@ document.querySelector("#saveBtn").addEventListener("click", (e) => {
     const descriptionF = document.querySelector("#descriptionF").value;
     var address = document.querySelector("#address").value;
 
-    if (imageB=== '' || imageS=== '' || dishName=== '' || descriptionS=== '' || descriptionF=== '' || address=== '') {
+    if (imageB === '' || imageS === '' || dishName === '' || descriptionS === '' || descriptionF === '' || address === '') {
         document.querySelector('.error-message').innerHTML = 'Điền đủ các mục';
     } else {
         const newDish = new Dish(imageB, imageS, dishName, descriptionS, descriptionF, address)
@@ -188,20 +190,20 @@ document.querySelector("#saveBtn").addEventListener("click", (e) => {
         //postData('https://62cfe5951cc14f8c087fabdf.mockapi.io/api/products', newDish)
         var x = document.getElementById("snackbar");
         x.className = "show";
-        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
         closeForm();
         clearInput();
     }
-}) 
+})
 
 function clearInput() {
     document.querySelector('.error-message').innerHTML = ''
-    document.querySelector("#imageB").value ='';
-    document.querySelector("#imageS").value='';
-    document.querySelector("#name").value='';
-    document.querySelector("#descriptionS").value='';
-    document.querySelector("#descriptionF").value='';
-    document.querySelector("#address").value='';
+    document.querySelector("#imageB").value = '';
+    document.querySelector("#imageS").value = '';
+    document.querySelector("#name").value = '';
+    document.querySelector("#descriptionS").value = '';
+    document.querySelector("#descriptionF").value = '';
+    document.querySelector("#address").value = '';
 }
 
 function getDishStore() {
@@ -220,4 +222,3 @@ function addDishStore(dish) {
     localStorage.setItem("dishes", JSON.stringify(dishes))
 }
 
-   

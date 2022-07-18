@@ -13,13 +13,13 @@ function renderCard2() {
     }).forEach((dish) => {
         result += `
         <div class="card">
-            <div style="flex:2">
-                <a class="go-to-detail" href="productDetail.html">
+            <div style="flex:1">
+                <a class="go-to-detail" href="productDetail.html?dishId=${dish.id}">
                     <img class="dish-image" src="${dish.imageS}" alt="${dish.name}">
                 </a>
             </div>
-            <div style="flex:1">
-                <a class="go-to-detail" href="productDetail.html">
+            <div style="flex:2">
+                <a class="go-to-detail" href="productDetail.html?dishId=${dish.id}">
                     <div class="dish-name">${dish.name}</div>
                 </a>
             </div>
@@ -36,6 +36,32 @@ function renderCard2() {
         `
     })
     card2.innerHTML = result;
+
+    //click add and order
+    let carts = document.querySelectorAll('.dish-container .button.cartBtn');
+    let curPage = document.querySelector('#page').innerHTML;
+    curPage = curPage.slice(0, 1);
+    curPage = parseFloat(curPage);
+    console.log(curPage);
+    for (let i = 0, j=(curPage - 1) * itemPerPage; i < carts.length, j<DishList.length; i++, j++) {
+        carts[i]?.addEventListener('click', (e) => {
+            e.preventDefault()
+            numInCart(DishList[j])
+            totalPrice(DishList[j])
+            renderNumCart()
+            showToast()
+        })
+    }
+    let orders = document.querySelectorAll('.dish-container .button.orderBtn');
+    renderNumCart()
+    for (let i = 0; i < orders.length; i++) {
+        orders[i].addEventListener('click', () => {
+            numInCart(DishList[i])
+            totalPrice(DishList[i])
+            renderNumCart()
+            window.location.href='payUI.html'
+        })
+    }
 }
 
 
@@ -146,64 +172,10 @@ function renderNumCart() {
     }
 }
 
-function renderDetail(dish) {
-    let dishInfo = document.querySelector('.cart-container');
-    let result = `
-    <div class="dish-image">
-        <img src="${dish.imageB}" alt="">
-    </div>
-    <div class="dish-info">
-        <h3 class="name-dish">${dish.name}</h3>
-        <div class="address">${dish.address}</div>
-        <div class="rating">
-            <div class="point">${dish.rate}/5</div>
-            <div class="number-rating">10</div>
-        </div>
-        <div class="price">
-            <i class="fa-solid fa-dollar-sign"></i>
-            ${dish.price}đ
-        </div>
-        <div class="btn-group">
-            <button type="button" class="button cartBtn">Add to cart</button>
-            <a href="" class="button orderBtn">Order Now</a>
-        </div>
-    </div>
-    `
-    dishInfo.innerHTML = result;
-}
-
 async function init2() {
     card2 = document.querySelector('.dish-container')
     let res = await fetch(`https://62cfe5951cc14f8c087fabdf.mockapi.io/api/products`);
     DishList = await res.json();
     renderCard2()
-    let carts = document.querySelectorAll('.button.cartBtn');
-    for (let i = 0; i < carts.length; i++) {
-        carts[i].addEventListener('click', () => {
-            numInCart(DishList[i])
-            totalPrice(DishList[i])
-            renderNumCart()
-            showToast()
-        })
-    }
-    let orders = document.querySelectorAll('.button.orderBtn');
-    renderNumCart()
-    for (let i = 0; i < orders.length; i++) {
-        orders[i].addEventListener('click', () => {
-            numInCart(DishList[i])
-            totalPrice(DishList[i])
-            renderNumCart()
-            window.location.href='payUI.html'
-        })
-    }
-    /*
-    let details = document.querySelectorAll('.go-to-detail');
-    for (let i = 0; i < details.length; i++) {
-        details[i].addEventListener('click', (e) => {
-            e.preventDefault()
-            renderDetail(DishList[i]);
-            //e.target.href = 'productDetail.html'
-        })
-    }*/
 }
-init2();
+document.addEventListener('DOMContentLoaded', init2, false);
