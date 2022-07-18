@@ -100,6 +100,12 @@ header {
     background-color: rgb(32, 101, 203);
 }
 
+.content .sort {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .table-container table {
     border-collapse: collapse;
     width: 100%;
@@ -260,7 +266,6 @@ header {
 
 .detail-container .input-div img {
     width: 100%;
-    border: 1px solid black;
     display: flex;
     justify-content: flex-start;
 }

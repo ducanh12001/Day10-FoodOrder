@@ -56,10 +56,10 @@ function renderCart() {
             payTable.innerHTML += `
             <tr>
                 <td><img src="${dish.image}" ></td>
-                <td>${dish.name}</td>
+                <td style="text-align:left">${dish.name}</td>
                 <td>${dish.price}đ</td>
                 <td>${dish.quantity}</td>
-                <td>${dish.quantity * dish.price}đ</td>
+                <td style="text-align:right">${dish.quantity * dish.price}đ</td>
             </tr>
             `
         })
@@ -70,7 +70,7 @@ function renderCart() {
                 <td></td>
                 <td></td>
                 <td style="font-weight: bold;">Tổng tiền:</td>
-                <td id="totalPrice">${priceCart}đ</td>
+                <td style="text-align:right" id="totalPrice">${priceCart}đ</td>
             </tr>
         </tfoot>
         `

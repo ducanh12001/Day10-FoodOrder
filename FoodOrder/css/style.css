@@ -25,6 +25,7 @@ header {
 
 .left_area a:hover {
     color: blue;
+    font-size: 24px;
 }
 
 .right_area {
@@ -43,6 +44,7 @@ header {
 
 .right_area .item a:hover {
     color: red;
+    font-weight: bold;
 }
 
 .right_area .item a .dish-num {
@@ -393,7 +395,7 @@ header {
 .ship-container {
     box-shadow: 2px 2px 4px #ddd;
     padding: 20px;
-    max-width: 1000px;
+    max-width: 800px;
     background-color: rgb(245, 255, 220);
     margin: 25px auto;
 }

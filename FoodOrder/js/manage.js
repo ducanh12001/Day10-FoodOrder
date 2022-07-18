@@ -32,22 +32,143 @@ async function init() {
     table = document.querySelector('#dish-list')
     let res = await fetch(`https://62cfe5951cc14f8c087fabdf.mockapi.io/api/products`);
     DishList = await res.json();
-    renderTable()
+    //localStorage.setItem("products", JSON.stringify(DishList))
+    renderTable(DishList)
 }
 
-function renderTable() {
+document.getElementById('sortName')?.addEventListener('click', (e) => {
+    let a = e.target.children[0].className;
+    var iTag = document.querySelector('.content #sortName i');
+    let temp = DishList;
+    if (a === '') {
+        var sortUp = temp.sort((a, b) => {
+            let fa = a.name.toLowerCase(),
+            fb = b.name.toLowerCase();
+            if (fa < fb) {
+                return -1;
+            }
+            if (fa > fb) {
+                return 1;
+            }
+            return 0;
+        })
+        renderTable(sortUp)
+        iTag.className = iTag.className.replace('', 'fa-solid fa-arrow-up-long');
+    } 
+    if (a === 'fa-solid fa-arrow-up-long') {
+        var sortDown = temp.sort((a, b) => {
+            let fa = a.name.toLowerCase(),
+            fb = b.name.toLowerCase();
+            if (fa > fb) {
+                return -1;
+            }
+            if (fa < fb) {
+                return 1;
+            }
+            return 0;
+        })
+        renderTable(sortDown);
+        iTag.className = iTag.className.replace('fa-solid fa-arrow-up-long', 'fa-solid fa-arrow-down-long');
+    } 
+    if (a === 'fa-solid fa-arrow-down-long') {
+        renderTable(getProductStore());
+        iTag.className = iTag.className.replace('fa-solid fa-arrow-down-long', '');
+    }
+})
+
+document.getElementById('sortDes')?.addEventListener('click', (e) => {
+    let a = e.target.children[0].className;
+    var iTag = document.querySelector('.content #sortDes i');
+    let temp = DishList;
+    if (a === '') {
+        var sortUp = temp.sort((a, b) => {
+            let fa = a.descriptionS.toLowerCase(),
+            fb = b.descriptionS.toLowerCase();
+            if (fa < fb) {
+                return -1;
+            }
+            if (fa > fb) {
+                return 1;
+            }
+            return 0;
+        })
+        renderTable(sortUp)
+        iTag.className = iTag.className.replace('', 'fa-solid fa-arrow-up-long');
+    } 
+    if (a === 'fa-solid fa-arrow-up-long') {
+        var sortDown = temp.sort((a, b) => {
+            let fa = a.descriptionS.toLowerCase(),
+            fb = b.descriptionS.toLowerCase();
+            if (fa > fb) {
+                return -1;
+            }
+            if (fa < fb) {
+                return 1;
+            }
+            return 0;
+        })
+        renderTable(sortDown);
+        iTag.className = iTag.className.replace('fa-solid fa-arrow-up-long', 'fa-solid fa-arrow-down-long');
+    } 
+    if (a === 'fa-solid fa-arrow-down-long') {
+        renderTable(getProductStore());
+        iTag.className = iTag.className.replace('fa-solid fa-arrow-down-long', '');
+    }
+})
+
+document.getElementById('sortPrice')?.addEventListener('click', (e) => {
+    let a = e.target.children[0].className;
+    var iTag = document.querySelector('.content #sortPrice i');
+    let temp = DishList;
+    if (a === '') {
+        var sortUp = temp.sort((a, b) => {return a.price - b.price})
+        renderTable(sortUp)
+        iTag.className = iTag.className.replace('', 'fa-solid fa-arrow-up-long');
+    } 
+    if (a === 'fa-solid fa-arrow-up-long') {
+        var sortDown = temp.sort((a, b) => {return b.price - a.price})
+        renderTable(sortDown);
+        iTag.className = iTag.className.replace('fa-solid fa-arrow-up-long', 'fa-solid fa-arrow-down-long');
+    } 
+    if (a === 'fa-solid fa-arrow-down-long') {
+        renderTable(getProductStore());
+        iTag.className = iTag.className.replace('fa-solid fa-arrow-down-long', '');
+    }
+})
+
+document.getElementById('sortRate')?.addEventListener('click', (e) => {
+    let a = e.target.children[0].className;
+    var iTag = document.querySelector('.content #sortRate i');
+    let temp = DishList;
+    if (a === '') {
+        var sortUp = temp.sort((a, b) => {return a.rate - b.rate})
+        renderTable(sortUp)
+        iTag.className = iTag.className.replace('', 'fa-solid fa-arrow-up-long');
+    } 
+    if (a === 'fa-solid fa-arrow-up-long') {
+        var sortDown = temp.sort((a, b) => {return b.rate - a.rate})
+        renderTable(sortDown);
+        iTag.className = iTag.className.replace('fa-solid fa-arrow-up-long', 'fa-solid fa-arrow-down-long');
+    } 
+    if (a === 'fa-solid fa-arrow-down-long') {
+        renderTable(getProductStore());
+        iTag.className = iTag.className.replace('fa-solid fa-arrow-down-long', '');
+    }
+})
+
+function renderTable(myProducts) {
     let result = '';
-    DishList.filter((dish, index) => {
+    myProducts.filter((dish, index) => {
         let start = (currentPage - 1) * itemPerPage;
         let end = currentPage * itemPerPage;
-        changePage(currentPage)
+        changePage(currentPage);
         if (index >= start && index < end) return true;
     }).forEach((dish, index) => {
         result += `<tr>
         <td>${(currentPage - 1) * itemPerPage + index + 1}</td>
         <td><img src="${dish.imageS}" alt="${dish.name}"></td>
-        <td><a href="" class="dish-details">${dish.name}</a></td>
-        <td>${dish.descriptionS}</td>
+        <td style="text-align:left"><a href="" class="dish-details">${dish.name}</a></td>
+        <td style="text-align:left">${dish.descriptionS}</td>
         <td>${dish.price}đ</td>
         <td>${dish.rate}</td></tr>
         `
@@ -102,18 +223,28 @@ function renderTable() {
     }
 }
 
+function getProductStore() {
+    let myProducts;
+    if (localStorage.getItem('products') === null) {
+        myProducts = []
+    } else {
+        myProducts = JSON.parse(localStorage.getItem('products'));
+    }
+    return myProducts;
+}
+
 function prevPage() {
     if (currentPage > 1) {
         currentPage--;
     }
-    renderTable()
+    renderTable(DishList)
 }
 
 function nextPage() {
     if (currentPage < DishList.length) {
         currentPage++;
     }
-    renderTable()
+    renderTable(DishList)
 }
 
 function changePage(page) {
@@ -221,4 +352,7 @@ function addDishStore(dish) {
     dishes.push(dish);
     localStorage.setItem("dishes", JSON.stringify(dishes))
 }
+
+
+
 
