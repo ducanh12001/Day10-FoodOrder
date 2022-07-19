@@ -33,7 +33,7 @@ async function init() {
     let res = await fetch(`https://62cfe5951cc14f8c087fabdf.mockapi.io/api/products`);
     DishList = await res.json();
     localStorage.setItem("products", JSON.stringify(DishList))
-    CurrentList = DishList;
+    CurrentList = getProductStore();
     renderTable(CurrentList)
 }
 
@@ -44,7 +44,7 @@ document.getElementById('sortName')?.addEventListener('click', (e) => {
     if (a === '') {
         var sortUp = temp.sort((a, b) => {
             let fa = a.name.toLowerCase(),
-            fb = b.name.toLowerCase();
+                fb = b.name.toLowerCase();
             if (fa < fb) {
                 return -1;
             }
@@ -55,11 +55,11 @@ document.getElementById('sortName')?.addEventListener('click', (e) => {
         })
         renderTable(sortUp)
         iTag.className = iTag.className.replace('', 'fa-solid fa-arrow-up-long');
-    } 
+    }
     if (a === 'fa-solid fa-arrow-up-long') {
         var sortDown = temp.sort((a, b) => {
             let fa = a.name.toLowerCase(),
-            fb = b.name.toLowerCase();
+                fb = b.name.toLowerCase();
             if (fa > fb) {
                 return -1;
             }
@@ -70,7 +70,7 @@ document.getElementById('sortName')?.addEventListener('click', (e) => {
         })
         renderTable(sortDown);
         iTag.className = iTag.className.replace('fa-solid fa-arrow-up-long', 'fa-solid fa-arrow-down-long');
-    } 
+    }
     if (a === 'fa-solid fa-arrow-down-long') {
         renderTable(getProductStore());
         iTag.className = iTag.className.replace('fa-solid fa-arrow-down-long', '');
@@ -78,13 +78,13 @@ document.getElementById('sortName')?.addEventListener('click', (e) => {
 })
 
 document.getElementById('sortDes')?.addEventListener('click', (e) => {
-    let a = e.target.firstChild.className; //e.target.children[0].className
+    let a = e.target.children[0].className;
     var iTag = document.querySelector('.content #sortDes i');
     let temp = DishList;
     if (a === '') {
         var sortUp = temp.sort((a, b) => {
             let fa = a.descriptionS.toLowerCase(),
-            fb = b.descriptionS.toLowerCase();
+                fb = b.descriptionS.toLowerCase();
             if (fa < fb) {
                 return -1;
             }
@@ -95,11 +95,11 @@ document.getElementById('sortDes')?.addEventListener('click', (e) => {
         })
         renderTable(sortUp)
         iTag.className = iTag.className.replace('', 'fa-solid fa-arrow-up-long');
-    } 
+    }
     if (a === 'fa-solid fa-arrow-up-long') {
         var sortDown = temp.sort((a, b) => {
             let fa = a.descriptionS.toLowerCase(),
-            fb = b.descriptionS.toLowerCase();
+                fb = b.descriptionS.toLowerCase();
             if (fa > fb) {
                 return -1;
             }
@@ -110,7 +110,7 @@ document.getElementById('sortDes')?.addEventListener('click', (e) => {
         })
         renderTable(sortDown);
         iTag.className = iTag.className.replace('fa-solid fa-arrow-up-long', 'fa-solid fa-arrow-down-long');
-    } 
+    }
     if (a === 'fa-solid fa-arrow-down-long') {
         renderTable(getProductStore());
         iTag.className = iTag.className.replace('fa-solid fa-arrow-down-long', '');
@@ -122,15 +122,15 @@ document.getElementById('sortPrice')?.addEventListener('click', (e) => {
     var iTag = document.querySelector('.content #sortPrice i');
     let temp = DishList;
     if (a === '') {
-        var sortUp = temp.sort((a, b) => {return a.price - b.price})
+        var sortUp = temp.sort((a, b) => { return a.price - b.price })
         renderTable(sortUp)
         iTag.className = iTag.className.replace('', 'fa-solid fa-arrow-up-long');
-    } 
+    }
     if (a === 'fa-solid fa-arrow-up-long') {
-        var sortDown = temp.sort((a, b) => {return b.price - a.price})
+        var sortDown = temp.sort((a, b) => { return b.price - a.price })
         renderTable(sortDown);
         iTag.className = iTag.className.replace('fa-solid fa-arrow-up-long', 'fa-solid fa-arrow-down-long');
-    } 
+    }
     if (a === 'fa-solid fa-arrow-down-long') {
         renderTable(getProductStore());
         iTag.className = iTag.className.replace('fa-solid fa-arrow-down-long', '');
@@ -142,15 +142,15 @@ document.getElementById('sortRate')?.addEventListener('click', (e) => {
     var iTag = document.querySelector('.content #sortRate i');
     let temp = DishList;
     if (a === '') {
-        var sortUp = temp.sort((a, b) => {return a.rate - b.rate})
+        var sortUp = temp.sort((a, b) => { return a.rate - b.rate })
         renderTable(sortUp)
         iTag.className = iTag.className.replace('', 'fa-solid fa-arrow-up-long');
-    } 
+    }
     if (a === 'fa-solid fa-arrow-up-long') {
-        var sortDown = temp.sort((a, b) => {return b.rate - a.rate})
+        var sortDown = temp.sort((a, b) => { return b.rate - a.rate })
         renderTable(sortDown);
         iTag.className = iTag.className.replace('fa-solid fa-arrow-up-long', 'fa-solid fa-arrow-down-long');
-    } 
+    }
     if (a === 'fa-solid fa-arrow-down-long') {
         renderTable(getProductStore());
         iTag.className = iTag.className.replace('fa-solid fa-arrow-down-long', '');
@@ -234,6 +234,12 @@ function getProductStore() {
     return myProducts;
 }
 
+function addDishStore(dish) {
+    const dishes = getProductStore();
+    dishes.push(dish);
+    localStorage.setItem("products", JSON.stringify(dishes))
+}
+
 function prevPage() {
     if (currentPage > 1) {
         currentPage--;
@@ -281,15 +287,14 @@ document.getElementById('searchBar')?.addEventListener('keyup', (e) => {
     let temp = DishList;
     //console.log(temp)
     let result = [];
-    for (let i=0; i<temp.length; i++) {
+    for (let i = 0; i < temp.length; i++) {
         if (temp[i].name.toString().toLowerCase().indexOf(filter) > -1 || temp[i].descriptionS.toString().toLowerCase().indexOf(filter) > -1) {
             result.push(temp[i]);
-        }    
+        }
     }
     CurrentList = result;
     renderTable(result)
 })
-
 
 async function postData(url = '', data = {}) {
     const response = await fetch(url, {
@@ -306,22 +311,47 @@ async function postData(url = '', data = {}) {
 //add to localStorage
 document.querySelector("#addForm").addEventListener("submit", (e) => {
     e.preventDefault()
-    var imageB = document.querySelector("#imageB").value;
-    var imageS = document.querySelector("#imageS").value;
     var dishName = document.querySelector("#name").value;
     const descriptionS = document.querySelector("#descriptionS").value;
     const descriptionF = document.querySelector("#descriptionF").value;
     var address = document.querySelector("#address").value;
-        const newDish = new Dish('imageB', 'imageS', dishName, descriptionS, descriptionF, address)
-        addDishStore(newDish);
-        //postData('https://62cfe5951cc14f8c087fabdf.mockapi.io/api/products', newDish)
-        var x = document.getElementById("snackbar");
-        x.className = "show";
-        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-        closeForm();
-        clearInput();
-    
+
+    //base04 image
+    var imageB = localStorage.getItem('imageB')
+    var imageS = localStorage.getItem('imageS')
+
+    const newDish = new Dish(imageB, imageS, dishName, descriptionS, descriptionF, address)
+    addDishStore(newDish);
+    //postData('https://62cfe5951cc14f8c087fabdf.mockapi.io/api/products', newDish)
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    closeForm();
+    clearInput();
+    CurrentList = getProductStore()
+    renderTable(CurrentList)
 })
+
+//image -> base64
+function encodeImageFileAsURL(element) {
+    var file = element.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function() {
+        localStorage.setItem('imageB', reader.result)
+        document.querySelector('#addForm .imageB').innerHTML = `<img src="${reader.result}" width="100px", height="70px">`
+    }
+    reader.readAsDataURL(file);
+}
+
+function encodeImageFileAsURL2(element) {
+    var file = element.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function() {
+        localStorage.setItem('imageS', reader.result)
+        document.querySelector('#addForm .imageS').innerHTML = `<img src="${reader.result}" width="100px", height="70px">`
+    }
+    reader.readAsDataURL(file);
+}
 
 function clearInput() {
     document.querySelector('.error-message').innerHTML = ''
@@ -332,23 +362,3 @@ function clearInput() {
     document.querySelector("#descriptionF").value = '';
     document.querySelector("#address").value = '';
 }
-
-function getDishStore() {
-    let myLibrary;
-    if (localStorage.getItem('dishes') === null) {
-        myLibrary = []
-    } else {
-        myLibrary = JSON.parse(localStorage.getItem('dishes'));
-    }
-    return myLibrary;
-}
-
-function addDishStore(dish) {
-    const dishes = getDishStore();
-    dishes.push(dish);
-    localStorage.setItem("dishes", JSON.stringify(dishes))
-}
-
-
-
-

@@ -200,7 +200,8 @@ async function renderPhuong(phuongId) {
     phuongSelect.innerHTML = result;
 }
 
-document.querySelector('#payBtn').addEventListener('click', () => {
+document.querySelector('#shipForm').addEventListener('submit', (e) => {
+    e.preventDefault()
     document.querySelector('.shopping-cart').style.display = 'none';
     document.querySelector('.ship-container').style.display = 'none';
     document.querySelector('.paysuccess-message').style.display = 'block';
@@ -209,13 +210,18 @@ document.querySelector('#payBtn').addEventListener('click', () => {
 })
 
 function goToPay() {
-    if (Object.values(cartList).length !== 0) {
+    if (cartList && Object.values(cartList).length !== 0) {
         window.location.href = 'payUI.html'
     } else {
         var x = document.getElementById("snackbar");
         x.className = "show";
         setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
     }
+}
+
+function cancelPay() {
+    window.location.href='home.html'
+    localStorage.clear()
 }
 
 function renderNumCart() {

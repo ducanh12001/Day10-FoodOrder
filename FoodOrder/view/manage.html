@@ -87,11 +87,17 @@
         <form id="addForm" action="">
             <div class="input-div">
                 <label for="imageB">Ảnh lớn (*)</label>
-                <input type="file" id="imageB" name="imageB" class="input" required>
+                <div style="display:flex">
+                    <input type="file" id="imageB" name="imageB" class="input" onchange="encodeImageFileAsURL(this)" required>
+                    <div class="imageB"></div>
+                </div>
             </div>
             <div class="input-div">
                 <label for="imageS">Ảnh nhỏ (*)</label>
-                <input type="file" id="imageS" name="imageS" class="input" required>
+                <div style="display:flex">
+                    <input type="file" id="imageS" name="imageS" class="input" onchange="encodeImageFileAsURL2(this)" required>
+                    <div class="imageS"></div>
+                </div>
             </div>
             <div class="input-div">
                 <label for="name">Tên món (*)</label>

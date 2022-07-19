@@ -35,19 +35,16 @@ function renderCard2() {
         </div>
         `
     })
-    card2.innerHTML = result;
+    card2.innerHTML += result;
 
     //click add and order
     let carts = document.querySelectorAll('.dish-container .button.cartBtn');
-    let curPage = document.querySelector('#page').innerHTML;
-    curPage = curPage.slice(0, 1);
-    curPage = parseFloat(curPage);
-    console.log(curPage);
-    for (let i = 0, j=(curPage - 1) * itemPerPage; i < carts.length, j<DishList.length; i++, j++) {
+    for (let i = 0, j=0; i < carts.length, j<DishList.length; i++, j++) {
         carts[i]?.addEventListener('click', (e) => {
             e.preventDefault()
             numInCart(DishList[j])
             totalPrice(DishList[j])
+            console.log(DishList[j])
             renderNumCart()
             showToast()
         })
@@ -64,14 +61,6 @@ function renderCard2() {
     }
 }
 
-
-function prevPage() {
-    if (currentPage > 1) {
-        currentPage--;
-    }
-    renderCard2()
-}
-
 function nextPage() {
     if (currentPage < DishList.length) {
         currentPage++;
@@ -81,18 +70,9 @@ function nextPage() {
 
 function changePage(page) {
     var btn_next = document.getElementById("nextBtn");
-    var btn_prev = document.getElementById("prevBtn");
-    var page_span = document.getElementById("page");
 
     if (page < 1) page = 1;
     if (page > numPages()) page = numPages();
-
-    page_span.innerHTML = page + '/' + numPages();
-    if (page === 1) {
-        btn_prev.style.visibility = "hidden";
-    } else {
-        btn_prev.style.visibility = "visible";
-    }
 
     if (page === numPages()) {
         btn_next.style.visibility = "hidden";

@@ -49,19 +49,19 @@
         <form id="shipForm" action="">
             <div class="input-div">
                 <label for="imageB">Thành phố</label>
-                <select id="city" name="city">
+                <select id="city" name="city" required>
                     <option selected="selected" value="">Chọn</option>
                 </select>
             </div>
             <div class="input-div">
                 <label for="imageS">Quận (Huyện)</label>
-                <select id="quan" name="quan">
+                <select id="quan" name="quan" required>
                     <option value="">Chọn</option>
                 </select>
             </div>
             <div class="input-div">
                 <label for="name">Phường (Xã)</label>
-                <select id="phuong" name="phuong">
+                <select id="phuong" name="phuong" required>
                     <option value="">Chọn</option>
                 </select>
             </div>
@@ -70,8 +70,8 @@
                 <input type="text" id="address" name="address" class="input" required>
             </div>
             <div class="input-div btn-div">
-                <input type="button" id="cancelBtn" value="Hủy" class="btn cancelBtn" onclick="window.location.href='home.html'">
-                <input type="submit" form="addForm" id="payBtn" value="Thanh toán" class="btn payBtn">
+                <input type="button" id="cancelBtn" value="Hủy" class="btn cancelBtn" onclick="cancelPay()">
+                <input type="submit" id="payBtn" value="Thanh toán" class="btn payBtn">
             </div>
         </form>
     </div>
