@@ -135,7 +135,7 @@ header {
 
 /*add*/
 .add-container, .detail-container {
-    max-width: 500px;
+    max-width: 600px;
     width: 100%;
     background-color: lightblue;
     padding: 20px;
@@ -177,6 +177,7 @@ header {
 .add-container #addForm .input-div label, .detail-container .input-div label {
     width: 30%;
     font-size: 14px;
+    margin-right: 10px;
 }
 
 .add-container #addForm .input-div .imageInput {

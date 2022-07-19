@@ -14,7 +14,7 @@
             <h3>Manage</h3>
         </div>
         <div class="right_area">
-            <a href=""></a>
+            <a href="#"></a>
         </div>
     </header>
     <div class="sidebar">
@@ -36,7 +36,7 @@
         <div class="title">
             Danh sách món ăn
             <div class="btn-group">
-                <input type="text" id="searchBar" placeholder="Tìm kiếm" onkeyup="searchValue()">
+                <input type="text" id="searchBar" placeholder="Tìm kiếm theo tên/mô tả">
                 <input type="button" id="addBtn" value="Thêm" onclick="openForm()">
             </div>
         </div>
@@ -86,28 +86,31 @@
         </div>
         <form id="addForm" action="">
             <div class="input-div">
-                <label for="imageB">Ảnh lớn</label>
-                <input type="text" id="imageB" name="imageB" class="input" placeholder="Link ảnh" required>
+                <label for="imageB">Ảnh lớn (*)</label>
+                <input type="file" id="imageB" name="imageB" class="input" required>
             </div>
             <div class="input-div">
-                <label for="imageS">Ảnh nhỏ</label>
-                <input type="text" id="imageS" name="imageS" class="input" placeholder="Link ảnh" required>
+                <label for="imageS">Ảnh nhỏ (*)</label>
+                <input type="file" id="imageS" name="imageS" class="input" required>
             </div>
             <div class="input-div">
-                <label for="name">Tên món</label>
+                <label for="name">Tên món (*)</label>
                 <input type="text" id="name" name="name" class="input" required>
             </div>
             <div class="input-div">
-                <label for="">Mô tả ngắn</label>
+                <label for="descriptionS">Mô tả ngắn (*)</label>
                 <textarea id="descriptionS" class="input textarea" required></textarea>
             </div>
             <div class="input-div">
-                <label for="">Mô tả đầy đủ</label>
+                <label for="descriptionF">Mô tả đầy đủ (*)</label>
                 <textarea id="descriptionF" class="input textarea" required></textarea>
             </div>
             <div class="input-div">
-                <label for="address">Thông tin nhà cung cấp</label>
+                <label for="address">Thông tin nhà cung cấp (*)</label>
                 <input type="text" id="address" name="address" class="input" required>
+            </div>
+            <div class="input-div">
+                <label style="font-weight:bold">(*): Thông tin bắt buộc</label>
             </div>
             <div class="input-div btn-div">
                 <input type="button" id="cancelBtn" value="Cancel" class="btn cancelBtn" onclick="closeForm()">

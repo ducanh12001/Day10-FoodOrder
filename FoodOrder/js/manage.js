@@ -24,7 +24,7 @@ class Dish {
 
 //pagination
 document.addEventListener('DOMContentLoaded', init, false);
-let DishList, table;
+let DishList, table, CurrentList;
 var currentPage = 1;
 var itemPerPage = 20;
 
@@ -32,8 +32,9 @@ async function init() {
     table = document.querySelector('#dish-list')
     let res = await fetch(`https://62cfe5951cc14f8c087fabdf.mockapi.io/api/products`);
     DishList = await res.json();
-    //localStorage.setItem("products", JSON.stringify(DishList))
-    renderTable(DishList)
+    localStorage.setItem("products", JSON.stringify(DishList))
+    CurrentList = DishList;
+    renderTable(CurrentList)
 }
 
 document.getElementById('sortName')?.addEventListener('click', (e) => {
@@ -77,7 +78,7 @@ document.getElementById('sortName')?.addEventListener('click', (e) => {
 })
 
 document.getElementById('sortDes')?.addEventListener('click', (e) => {
-    let a = e.target.children[0].className;
+    let a = e.target.firstChild.className; //e.target.children[0].className
     var iTag = document.querySelector('.content #sortDes i');
     let temp = DishList;
     if (a === '') {
@@ -237,14 +238,14 @@ function prevPage() {
     if (currentPage > 1) {
         currentPage--;
     }
-    renderTable(DishList)
+    renderTable(CurrentList)
 }
 
 function nextPage() {
     if (currentPage < DishList.length) {
         currentPage++;
     }
-    renderTable(DishList)
+    renderTable(CurrentList)
 }
 
 function changePage(page) {
@@ -270,26 +271,25 @@ function changePage(page) {
 }
 
 function numPages() {
-    return Math.ceil(DishList.length / itemPerPage);
+    return Math.ceil(CurrentList.length / itemPerPage);
 }
 
 //
-function searchValue() {
+document.getElementById('searchBar')?.addEventListener('keyup', (e) => {
+    e.preventDefault()
     var filter = document.getElementById("searchBar").value.toLowerCase();
-    var table = document.getElementById("table");
-    var tr = table.getElementsByTagName("tr");
-    for (var i = 1; i < tr.length; i++) {
-        tr[i].style.display = "none";
-        const tdArray = tr[i].getElementsByTagName("td");
-        for (var j = 0; j < tdArray.length; j++) {
-            const cellValue = tdArray[j];
-            if (cellValue && cellValue.innerHTML.toLowerCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-                break;
-            }
-        }
+    let temp = DishList;
+    //console.log(temp)
+    let result = [];
+    for (let i=0; i<temp.length; i++) {
+        if (temp[i].name.toString().toLowerCase().indexOf(filter) > -1 || temp[i].descriptionS.toString().toLowerCase().indexOf(filter) > -1) {
+            result.push(temp[i]);
+        }    
     }
-}
+    CurrentList = result;
+    renderTable(result)
+})
+
 
 async function postData(url = '', data = {}) {
     const response = await fetch(url, {
@@ -304,7 +304,7 @@ async function postData(url = '', data = {}) {
 }
 
 //add to localStorage
-document.querySelector("#saveBtn").addEventListener("click", (e) => {
+document.querySelector("#addForm").addEventListener("submit", (e) => {
     e.preventDefault()
     var imageB = document.querySelector("#imageB").value;
     var imageS = document.querySelector("#imageS").value;
@@ -312,11 +312,7 @@ document.querySelector("#saveBtn").addEventListener("click", (e) => {
     const descriptionS = document.querySelector("#descriptionS").value;
     const descriptionF = document.querySelector("#descriptionF").value;
     var address = document.querySelector("#address").value;
-
-    if (imageB === '' || imageS === '' || dishName === '' || descriptionS === '' || descriptionF === '' || address === '') {
-        document.querySelector('.error-message').innerHTML = 'Điền đủ các mục';
-    } else {
-        const newDish = new Dish(imageB, imageS, dishName, descriptionS, descriptionF, address)
+        const newDish = new Dish('imageB', 'imageS', dishName, descriptionS, descriptionF, address)
         addDishStore(newDish);
         //postData('https://62cfe5951cc14f8c087fabdf.mockapi.io/api/products', newDish)
         var x = document.getElementById("snackbar");
@@ -324,7 +320,7 @@ document.querySelector("#saveBtn").addEventListener("click", (e) => {
         setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
         closeForm();
         clearInput();
-    }
+    
 })
 
 function clearInput() {
